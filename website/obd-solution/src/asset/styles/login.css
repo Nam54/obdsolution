@@ -84,5 +84,6 @@
 }
 
 .oops h1 {
+    width: fit-content;
     font-family: 'Francois One', sans-serif;
 }

@@ -1,0 +1,56 @@
+
+
+.container{
+    height: 25rem;
+    overflow-y: auto;
+    position: relative;
+}
+table{
+    width: 100%;
+    font-size: 13px;
+    padding: 10px;
+}
+/* thead, tbody {
+    display: block;
+} */
+
+tbody{
+    height: 100px;       /* Just for the demo          */
+    overflow-y: auto;    /* Trigger vertical scroll    */
+    overflow-x: hidden;  /* Hide the horizontal scroll */
+}
+thead tr{
+    background-color: rgb(235, 243, 243);
+    width: 100%;
+}
+th,td{
+    text-align: left;
+    padding: -3px;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    align-items: center;
+}
+
+th{
+    font-size: 16px;
+    font-weight: 500;
+    color: #344a64;
+
+}
+tbody tr{
+    color: #585b5c;
+    border-bottom: 1px solid #d0d4d8;
+    height: fit-content;
+    box-sizing: border-box;
+    width: 100%;
+
+}
+
+tbody tr div{
+    padding: 1rem 0 1rem 0;
+}
+
+tbody tr:nth-child(odd){
+    background-color: #e5ebf3;
+}

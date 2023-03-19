@@ -4,6 +4,7 @@ import Login from "./components/Login";
 import { useState } from "react";
 import Table from "./components/Table";
 import './App.css'
+import Verhice from "./components/Verhice";
 
 function App() {
   const adminUser = {
@@ -16,7 +17,7 @@ function App() {
       <div>
         <Navbar />
       </div>
-
+        <Verhice/>
       <div className="cttable">
         <Table />
       </div>

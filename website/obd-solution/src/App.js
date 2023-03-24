@@ -3,8 +3,9 @@ import Navbar from "./components/Navbar";
 import Login from "./components/Login";
 import { useState } from "react";
 import Table from "./components/Table";
-import './App.css'
+import "./App.css";
 import Verhice from "./components/Verhice";
+import Member from "./components/Member";
 
 function App() {
   const adminUser = {
@@ -17,9 +18,13 @@ function App() {
       <div>
         <Navbar />
       </div>
-        <Verhice/>
-      <div className="cttable">
+      {/* <Verhice/> */}
+      {/* <div className="cttable">
         <Table />
+      </div> */}
+
+      <div>
+        <Member />
       </div>
     </div>
   );

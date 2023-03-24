@@ -22,14 +22,14 @@ export default function LoginComponent() {
         </form>
       </div>
 
-      <div className="oops">
+      {/* <div className="oops">
         <h1>
             OOPS!
             <br /> Có vẻ bạn chưa đăng nhập...
             <br />
 
         </h1>
-      </div>
+      </div> */}
     </div>
   );
 }

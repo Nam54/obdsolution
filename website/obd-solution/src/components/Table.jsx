@@ -8,6 +8,7 @@ import data from "../../src/asset/data/data2.json"
 
 
 export default function Table() {
+    
     console.log(data);
   return (
     <div>
@@ -92,6 +93,8 @@ export default function Table() {
             ))}
           </tbody>
         </table>
+
+
       </div>
     </div>
   );

@@ -8,10 +8,11 @@
     display: flex;
     flex-direction: row;
     background: rgb(9, 9, 121);
-    background: linear-gradient(90deg, rgb(65, 88, 177) 22%, rgba(0, 212, 255, 1) 100%);
+    background: linear-gradient(90deg, #6a85b6 22%, #bac8e0 100%);
     border: none;
     padding: 1rem 1rem;
     border-radius: 5px;
+    justify-content: space-between;
 }
 
 .add_member h2 {
@@ -21,53 +22,61 @@
     font-weight: bold;
 }
 
-.add_member form {
+.add_member,
+.edit_info form {
     height: max-content;
 }
 
-.add_member input {
-    height: 2.5rem;
+.add_member input,
+.edit_info input {
+    height: 2.4rem;
     border: none;
     border-radius: 10px;
     width: 16rem;
     margin-right: 10px;
     box-sizing: border-box;
-    padding: 0.4rem;
+    padding: 0rem 0.4rem;
+    font-size: medium;
 }
 
-.add_member .select {
-    height: 2.5rem;
+.add_member .select,
+.edit_info .select {
+    height: 2.4rem;
     border: none;
     border-radius: 10px;
     width: 8em;
     box-sizing: border-box;
     padding: 0.4rem;
-    color: rgb(65, 88, 177);
+    color: #2e3d50;
+    font-size: medium;
 }
 
-.add_member .submit {
-    color: whitesmoke;
+.add_member .submit,
+.edit_info .submit  {
+    color: #ecf6fb;
     margin-left: 1.8rem;
-    border: 2px solid whitesmoke;
+    border: 2px solid #ecf6fb;
     border-radius: 5px;
-    height: 2.5rem;
+    height: 2.4rem;
     box-sizing: border-box;
     padding: 0 1rem;
     transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.5s;
 }
 
-.add_member .submit:hover{
-    color: rgb(65, 88, 177) ;
+.add_member .submit:hover {
+    color: #53a7d8;
     background-color: aliceblue;
-    
+    border: 1px solid #ecf6fb;
+
 }
 
-.add_member .submit i{
+.add_member .submit i,
+.edit_info .submit i {
     position: relative;
-    transition: 0.5s;
+
 }
 
-.add_member .submit i::after{
+.add_member .submit i::after {
     content: "Add";
     position: absolute;
     opacity: 0;
@@ -77,15 +86,163 @@
     font-size: 0.8rem;
 }
 
-.add_member .submit:hover i{
+.add_member .submit:hover i {
     padding-right: 40px;
 }
 
-.submit:hover i::after{
+.submit:hover i::after {
     opacity: 1;
     right: 0;
 }
 
-input:focus{
+input:focus {
     outline: none;
 }
+
+.result {
+    position: absolute;
+    background-color: #2d8ec7;
+    width: 16rem;
+    margin-top: 0.5rem;
+}
+
+.search {
+    position: relative;
+}
+
+.result {
+    border-radius: 5px;
+    transition: all 0.25s;
+}
+
+.result ul li {
+    padding: 0.8rem;
+    color: #b2dcf5;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.25s;
+}
+
+.result ul li:hover {
+    background-color: #b2dcf5;
+    color: #2d8ec7;
+}
+
+
+
+
+
+
+
+
+
+.edit_member {
+    display: flex;
+    flex-direction: column;
+    background: #005bea;
+    background: linear-gradient(90deg, #bac8e0 22%, #6a85b6 100%);
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    border: 1px solid #b2dcf5;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+
+}
+
+.edit_member>div {
+    color: #2e3d50;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 1.1rem;
+
+}
+
+.edit_member>div>h2  {
+    font-weight: 600;
+    color: #ecf6fb;
+}
+
+.edit_member h4{
+    margin-bottom: 1rem;
+}
+
+
+
+.edit_member .list_verhices .verhice {
+    padding: 0.5rem 0.5rem 0.5rem 1rem;
+    border-left: 3px solid #2e3d50;
+    border-bottom: 1px solid #2e3d50;
+    margin-bottom: 5px;
+    margin-right: 4rem;
+    width: 30vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    position: relative;
+    background-color: transparent;
+    z-index: 0;
+}
+
+.verhice:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    background-color: #2e3d50;
+    z-index: -1;
+    transition: all 0.1s ease-in;
+}
+
+.verhice:hover {
+    color: #ecf6fb;
+
+}
+
+.verhice:hover:before {
+    width: 100%;
+}
+
+.edit_info {
+    width: calc(100%-30vw);
+}
+
+.edit_info form  .gr1, .gr2{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between ;
+    margin-bottom: 2rem;
+    
+}
+
+.gr1 input, .gr2 input{
+    border: 1px solid #ecf6fb;
+}
+
+ .gr2 .select{
+    width: 16rem;
+    border: 1px solid #ecf6fb;
+    color: #2e3d50;
+}
+
+.edit_info .submit{
+    width: 6rem;
+    margin-left:0 ;
+}
+
+.edit_info .submit:hover{
+    font-size: 120%;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+
+
+
+
+
+
+

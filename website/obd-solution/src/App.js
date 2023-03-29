@@ -1,11 +1,10 @@
 import React from "react";
 import Navbar from "./components/Navbar";
-import Login from "./components/Login";
-import { useState } from "react";
 import Table from "./components/Table";
 import "./App.css";
 import Verhice from "./components/Verhice";
-import Member from "./components/Member";
+import Members from "./components/Member"
+
 
 function App() {
   const adminUser = {
@@ -16,12 +15,14 @@ function App() {
   return (
     <div>
       <div>
-        <Navbar />
+        <Navbar username={adminUser.username} />
       </div>
       <Verhice/>
       <div className="cttable">
-        <Table />
+        <Table rowsPerPage={5}/>
       </div>
+
+      <Members />
     </div>
   );
 }

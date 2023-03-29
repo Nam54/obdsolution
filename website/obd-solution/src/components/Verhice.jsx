@@ -7,7 +7,7 @@ const verhices = ["Xe 01", "Xe 02", "Xe 03", "Xe 04", "Xe 05"];
 
 export default function Verhice() {
   const [isActive, setActive] = useState(false);
-  const [selected, setSelected] = useState("");
+  const [selected, setSelected] = useState(verhices[0]);
   const [date, setDate] = useState({
     startDate: new Date(),
     endDate: new Date().setMonth(11),

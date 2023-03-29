@@ -7,12 +7,14 @@
 .add_member {
     display: flex;
     flex-direction: row;
-    background: rgb(9, 9, 121);
-    background: linear-gradient(90deg, #6a85b6 22%, #bac8e0 100%);
+    /* background: rgb(9, 9, 121);
+    background: linear-gradient(90deg, #6a85b6 22%, #bac8e0 100%); */
+    background-color: #6a85b6;
     border: none;
     padding: 1rem 1rem;
     border-radius: 5px;
     justify-content: space-between;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 }
 
 .add_member h2 {
@@ -140,8 +142,9 @@ input:focus {
 .edit_member {
     display: flex;
     flex-direction: column;
-    background: #005bea;
-    background: linear-gradient(90deg, #bac8e0 22%, #6a85b6 100%);
+    /* background: #005bea;
+    background: linear-gradient(90deg, #bac8e0 22%, #6a85b6 100%); */
+    background-color: #6a85b6;
     margin-top: 0.5rem;
     padding: 0.5rem;
     border: 1px solid #b2dcf5;

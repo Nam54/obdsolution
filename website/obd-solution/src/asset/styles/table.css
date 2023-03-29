@@ -1,14 +1,16 @@
 
 
 .container{
-    height: 25rem;
+    height: fit-content;
     overflow-y: auto;
-    position: relative;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
 }
 table{
     width: 100%;
     font-size: 13px;
     padding: 10px;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 }
 /* thead, tbody {
     display: block;
@@ -45,6 +47,10 @@ tbody tr{
     box-sizing: border-box;
     width: 100%;
 
+}
+
+tbody tr td, thead tr th {
+    padding-left: 1rem;
 }
 
 tbody tr div{

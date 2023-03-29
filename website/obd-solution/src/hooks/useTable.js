@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 
 // Calculate the number of rows
-const range=(data, rowPerPage)=>{
+const calculateRange=(data, rowPerPage)=>{
     const range =[];
     const rows = Math.ceil(data.length/rowPerPage);
 
@@ -24,14 +24,14 @@ const useTable=(data, page, rowPerPage)=>{
 
     useEffect(()=>{
 
-        const range = range(data, rowPerPage);
+        const range = calculateRange(data, rowPerPage);
         setTableRange([...range]);
 
         const slice = sliceData(data, page, rowPerPage);
         setSlice([...slice]);
     }, [data, setTableRange,page, setSlice]);
 
-    return{slice: slice, range: tableRange};
+    return{slice, range: tableRange};
 };
 
 export default useTable;

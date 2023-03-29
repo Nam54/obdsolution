@@ -18,13 +18,9 @@ function App() {
       <div>
         <Navbar />
       </div>
-      {/* <Verhice/> */}
-      {/* <div className="cttable">
+      <Verhice/>
+      <div className="cttable">
         <Table />
-      </div> */}
-
-      <div>
-        <Member />
       </div>
     </div>
   );

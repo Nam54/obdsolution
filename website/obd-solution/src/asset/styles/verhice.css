@@ -12,6 +12,7 @@
     /* position: static; */
     height: 100%;
     margin-right: 1rem;
+    position: relative;
 }
 
 .dropdown-select{
@@ -34,7 +35,7 @@
     border-radius: 5px;
     background-color: #e5ebf3;
     color: #344a64;
-    position: relative;
+    position: absolute;
     width: 100%;
     top: 0.4rem;
     /* opacity: 0;

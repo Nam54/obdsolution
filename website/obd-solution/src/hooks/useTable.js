@@ -13,12 +13,25 @@ const range=(data, rowPerPage)=>{
     return range;
 }
 
-
-const sliceDate=(data, page, rowPerPage)=>{
+// Slice data 
+const sliceData=(data, page, rowPerPage)=>{
     return data.slice((page-1)*rowPerPage,page*rowPerPage);
 }
 
 const useTable=(data, page, rowPerPage)=>{
     const [tableRange, setTableRange]=useState([]);
     const [slice, setSlice]= useState([]);
-}
+
+    useEffect(()=>{
+
+        const range = range(data, rowPerPage);
+        setTableRange([...range]);
+
+        const slice = sliceData(data, page, rowPerPage);
+        setSlice([...slice]);
+    }, [data, setTableRange,page, setSlice]);
+
+    return{slice: slice, range: tableRange};
+};
+
+export default useTable;

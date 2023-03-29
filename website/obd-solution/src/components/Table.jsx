@@ -1,6 +1,9 @@
 import React from "react";
 import "../../src/asset/styles/table.css";
 import data from "../../src/asset/data/data2.json"
+import useTable from "../hooks/useTable";
+import styles from "../../src/asset/styles/Table.module.css";
+import TableFooter from './TableFooter'
 
 
 

@@ -2,6 +2,7 @@ import React from "react";
 import "../../src/asset/styles/member.css";
 import Search from "./SearchBar";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const users = [
   { id: "1", fullname: "John" },
@@ -87,9 +88,9 @@ export default function Member() {
               {verhices.map((verh) => (
                 <div className="verhice" key={verh.id}>
                   {verh.bx}
-                  <a href="">
+                  <Link to="/verhices">
                     <i className="fa-solid fa-pen-to-square"></i>
-                  </a>
+                  </Link>
                 </div>
               ))}
             </div>

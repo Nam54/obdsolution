@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import logo from "../../src/asset/images/head-logo.jpg";
 import "../../src/asset/styles/navbar.css";
 
@@ -11,25 +12,25 @@ export default function Navbar({username}) {
       <div className="navbar">
         <ul>
           <li>
-            <a href="">QUẢN LÝ DỮ LIỆU</a>
+            <Link to='/'>QUẢN LÝ DỮ LIỆU</Link>
           </li>
           <li>
-            <a href="">CÀI ĐẶT THIẾT BỊ</a>
+            <Link to='/verhices'>CÀI ĐẶT THIẾT BỊ</Link>
           </li>
           <li>
-            <a href="">QUẢN LÝ THÀNH VIÊN</a>
+            <Link to='/users'>QUẢN LÝ THÀNH VIÊN</Link>
           </li>
           <li>
-            <a href="">VỀ CHÚNG TÔI</a>
+            <Link to='/abouts'>VỀ CHÚNG TÔI</Link>
           </li>
         </ul>
 
         <div className="account">
-          <a href="">
+          <Link>
             <i class="fa-regular fa-circle-user"></i>
             <p className="username">{username}</p>
-          </a>
-          <a href="">Logout</a>
+          </Link>
+          <Link>Logout</Link>
         </div>
 
 

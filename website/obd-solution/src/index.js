@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import App from "./pages/App/App";
 import "./index.css";
 import User from "./pages/User/User";
+import Login from "./pages/Login/Login";
 
 const rootElement = document.getElementById("root");
 
@@ -13,6 +14,7 @@ ReactDOM.render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/users" element={<User />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,

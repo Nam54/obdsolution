@@ -22,8 +22,10 @@ tbody{
     overflow-x: hidden;  /* Hide the horizontal scroll */
 }
 thead tr{
-    background-color: rgb(235, 243, 243);
+    
+    background-color: #185adb;
     width: 100%;
+    
 }
 th,td{
     text-align: left;
@@ -37,8 +39,8 @@ th,td{
 th{
     font-size: 16px;
     font-weight: 500;
-    color: #344a64;
-
+    color: white;
+    padding: 0.4rem 0;
 }
 tbody tr{
     color: #585b5c;

@@ -30,7 +30,7 @@ export default function Navbar({username}) {
             <i class="fa-regular fa-circle-user"></i>
             <p className="username">{username}</p>
           </Link>
-          <Link>Logout</Link>
+          <Link to='/login'>Logout</Link>
         </div>
 
 

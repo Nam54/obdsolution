@@ -2,14 +2,16 @@
     display: flex;
     flex-direction: column;
     padding: 1.5rem;
+    background-color: #dce8f3;
 }
 
 .add_member {
     display: flex;
     flex-direction: row;
     /* background: rgb(9, 9, 121);
-    background: linear-gradient(90deg, #6a85b6 22%, #bac8e0 100%); */
-    background-color: #6a85b6;
+    background: linear-gradient(90deg, #50d5b7 22%, #067d68 100%); */
+    background-color: white;;
+
     border: none;
     padding: 1rem 1rem;
     border-radius: 5px;
@@ -18,7 +20,7 @@
 }
 
 .add_member h2 {
-    color: aliceblue;
+    color: #344a64;
     padding: 0 0 1.2rem 0;
     font-size: medium;
     font-weight: bold;
@@ -32,37 +34,41 @@
 .add_member input,
 .edit_info input {
     height: 2.4rem;
-    border: none;
-    border-radius: 10px;
+    border: 1px solid #344a64;
+    border-radius: 5px;
     width: 16rem;
     margin-right: 10px;
     box-sizing: border-box;
     padding: 0rem 0.4rem;
     font-size: medium;
+    background-color: #dbeafe;
+
 }
 
 .add_member .select,
 .edit_info .select {
+    border: 1px solid #344a64;
     height: 2.4rem;
-    border: none;
-    border-radius: 10px;
+   
+    border-radius: 5px;
     width: 8em;
     box-sizing: border-box;
     padding: 0.4rem;
     color: #2e3d50;
     font-size: medium;
+    background-color: #dbeafe;
 }
 
 .add_member .submit,
 .edit_info .submit  {
     color: #ecf6fb;
     margin-left: 1.8rem;
-    border: 2px solid #ecf6fb;
-    border-radius: 5px;
+    background-color: #6a5af9;
     height: 2.4rem;
     box-sizing: border-box;
     padding: 0 1rem;
     transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.5s;
+    box-shadow: 2px 2px 1px 1px rgba(0, 0, 0, 0.2);
 }
 
 .add_member .submit:hover {
@@ -142,9 +148,8 @@ input:focus {
 .edit_member {
     display: flex;
     flex-direction: column;
-    /* background: #005bea;
-    background: linear-gradient(90deg, #bac8e0 22%, #6a85b6 100%); */
-    background-color: #6a85b6;
+    /* background: linear-gradient(90deg, #48c6ef  22%, #6f86d6 100%); */
+    background-color: white;;
     margin-top: 0.5rem;
     padding: 0.5rem;
     border: 1px solid #b2dcf5;
@@ -164,7 +169,7 @@ input:focus {
 
 .edit_member>div>h2  {
     font-weight: 600;
-    color: #ecf6fb;
+    color: #344a64;
 }
 
 .edit_member h4{
@@ -222,13 +227,11 @@ input:focus {
     
 }
 
-.gr1 input, .gr2 input{
-    border: 1px solid #ecf6fb;
-}
+
 
  .gr2 .select{
     width: 16rem;
-    border: 1px solid #ecf6fb;
+    
     color: #2e3d50;
 }
 

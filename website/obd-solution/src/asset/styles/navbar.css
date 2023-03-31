@@ -3,7 +3,9 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    
+}
+.logo img{
+    height: 4rem;
 }
 
 .navbar{
@@ -17,7 +19,8 @@
     justify-content: space-between;
     height: 2.7em;
     padding: 0 1em ;
-    font-size: 0.9em;
+    font-size: 0.8em;
+    transition: all 0.25s ease-in-out;
 }
 
 .navbar ul {
@@ -32,6 +35,8 @@
     /* display: flex;
     align-items: center;
     justify-content: center; */
+    transition: all 1s ease-out;
+
 }
 .navbar ul li a{
     height: 100%;
@@ -44,6 +49,7 @@
 .navbar ul li:hover{
     background-color: #015c92;
     color: #f4fbff;
+    
 }
 
 .navbar .account, .account > a{
@@ -54,9 +60,19 @@
 }
 
 .navbar .account a{
-    padding: 0.4rem;
-    
+    padding: 0.2rem 0.4rem;
     box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.2);
+    background-color: #015c92;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+ a>p, a>i{
+    display: block;
+    height: min-content;
+    padding: 0 3px;
 }
 
 

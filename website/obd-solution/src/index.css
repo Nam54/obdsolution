@@ -5,3 +5,9 @@
 body {
     font-family: "DM sans" sans-serif;
 }
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}

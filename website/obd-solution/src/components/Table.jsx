@@ -17,7 +17,7 @@ export default function Table({rowsPerPage}) {
     
   return (
     <div>
-      <div className="container">
+      <div className="tble_container">
         <table className="table-auto overflow-scroll w-full">
           <thead>
             <tr>

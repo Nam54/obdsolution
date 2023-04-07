@@ -3,6 +3,8 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    background-color: white;
+
 }
 .logo img{
     height: 4rem;
@@ -21,6 +23,7 @@
     padding: 0 1em ;
     font-size: 0.8em;
     transition: all 0.25s ease-in-out;
+    z-index: 100;
 }
 
 .navbar ul {
@@ -43,6 +46,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
 }
 
 
@@ -62,8 +66,8 @@
 .navbar .account a{
     padding: 0.2rem 0.4rem;
     box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.2);
-    background-color: #015c92;
-    border-radius: 10px;
+    background-color: #185adb;
+    border-radius: 3px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -74,5 +78,7 @@
     height: min-content;
     padding: 0 3px;
 }
+
+
 
 

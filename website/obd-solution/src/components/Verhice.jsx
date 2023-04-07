@@ -5,7 +5,7 @@ import Datepicker from "react-tailwindcss-datepicker";
 
 const verhices = ["Xe 01", "Xe 02", "Xe 03", "Xe 04", "Xe 05"];
 
-export default function Verhice() {
+export default function Verhice({ dateDisplay, btnDisplay }) {
   const [isActive, setActive] = useState(false);
   const [selected, setSelected] = useState(verhices[0]);
   const [date, setDate] = useState({
@@ -18,7 +18,10 @@ export default function Verhice() {
   };
 
   return (
-    <div className="ccontainer">
+    <div className="filter_container">
+      <div className="til">
+        <p>Lọc kết quả</p>
+      </div>
       <div className="cdropdown" onClick={(e) => setActive(!isActive)}>
         <div className="dropdown-select">
           <span className="select"> {selected} </span>
@@ -42,13 +45,23 @@ export default function Verhice() {
         )}
       </div>
 
-      <div className="date">
-        <Datepicker
-          value={date}
-          onChange={handelDateChanged}
-          inputClassName="font-medium"
-        />
-      </div>
+      {dateDisplay && (
+        <div className="date">
+          <Datepicker
+            value={date}
+            onChange={handelDateChanged}
+            inputClassName="font-medium"
+          />
+        </div>
+      )}
+
+      {btnDisplay && (
+        <div className="btnManager">
+          <button type="submit" id="submit" className="submit">
+            Thiếp lập mặc định
+          </button>
+        </div>
+      )}
     </div>
   );
 }

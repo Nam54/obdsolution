@@ -1,6 +1,6 @@
 
 
-.container{
+.tble_container{
     height: fit-content;
     overflow-y: auto;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
@@ -12,9 +12,7 @@ table{
     padding: 10px;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 }
-/* thead, tbody {
-    display: block;
-} */
+
 
 tbody{
     height: 100px;       /* Just for the demo          */

@@ -1,0 +1,29 @@
+.info_cars {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    padding: 1rem;
+
+}
+
+.custom2-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0rem;
+    background-color: #dce8f3;
+}
+h1 {
+    color: #344a64;
+    padding: 0 0 1.2rem 0;
+    font-size: large;
+    font-weight: bold;
+}
+.info_cars p{
+    color: #afbcc4;
+    font-size: 90%;
+}
+

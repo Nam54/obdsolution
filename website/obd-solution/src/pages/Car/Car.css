@@ -1,0 +1,13 @@
+.cm_taskbar{
+    /* display: flex; */
+    /* padding-top: 1.5rem; */
+    
+}
+.carc{
+    position: fixed;
+}
+.page_container{
+    background-color: #dce8f3;
+    margin-top: 0;
+    position: relative;
+}

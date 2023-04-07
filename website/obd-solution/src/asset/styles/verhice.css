@@ -1,10 +1,17 @@
-.ccontainer{
+.filter_container{
     display: flex;
     flex-direction: row;
-    align-items: flex-start ;
+    align-items: center;
     padding: 1rem;
     justify-content: flex-start;
-
+    width: auto;
+    height: max-content;
+    /* border: 1px solid #69737e; */
+    margin:0 1rem 1rem 1rem;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    font-weight: 400;
+    background-color: white;
 }
 
 .cdropdown{
@@ -39,21 +46,22 @@
     color: #344a64;
     position: absolute;
     width: 100%;
-    top: 0.4rem;
+    top: 2.8rem;
     /* opacity: 0;
     visibility: hidden; */
-    transition: opacity 0.2s linear, visibility 0.2s linear;
+    transition: opacity 0.1s linear, visibility 0.1s linear;
 }
 .dropdown-list-item{
     padding: 0.6rem;
     cursor: pointer;
-    transition: all 0.2s linear;
+    transition: all 0.1s linear;
     position: relative;
 
 }
 
 .dropdown-list-item:hover{
     background-color: #3b82f6;
+    color: #dbeafe;
 }
 
 .date{
@@ -63,3 +71,11 @@
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 }
 
+.til{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    color: #69737e;
+}

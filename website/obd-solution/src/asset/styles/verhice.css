@@ -79,3 +79,27 @@
     padding: 1rem;
     color: #69737e;
 }
+
+.submit{
+    color: #ecf6fb;
+    margin-left: 1.8rem;
+    background-color: #6a5af9;
+    height: 2.4rem;
+    box-sizing: border-box;
+    padding: 0 1rem;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.5s;
+    box-shadow: 2px 2px 1px 1px rgba(0, 0, 0, 0.2);
+}
+#add{
+    background-color: #3b82f6;
+}
+#remove{
+    background-color: #f63b4b;
+}
+
+.submit:hover, #add:hover, #remove:hover{
+    color: #53a7d8;
+    background-color: aliceblue;
+    
+}
+

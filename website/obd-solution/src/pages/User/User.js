@@ -5,7 +5,7 @@ import Member from "../../components/Member";
 function User(){
     return (
         <div>
-            <Navbar/>
+            <Navbar />
             <Member/>
         </div>
     );

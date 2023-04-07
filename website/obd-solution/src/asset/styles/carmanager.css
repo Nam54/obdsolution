@@ -6,7 +6,7 @@
     border-radius: 5px;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
     box-sizing: border-box;
-    padding: 1rem;
+    padding: 1rem ;
 
 }
 
@@ -16,14 +16,93 @@
     padding: 0rem;
     background-color: #dce8f3;
 }
+
 h1 {
     color: #344a64;
-    padding: 0 0 1.2rem 0;
+    padding: 0 0 0.5rem 0;
     font-size: large;
     font-weight: bold;
 }
-.info_cars p{
+
+.info_cars p {
     color: #afbcc4;
     font-size: 90%;
 }
 
+.info_cars .info_form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem 0 1rem;
+    border: 1px dashed #ccc;
+    border-top: none;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.info_cars .info_form .form_col{
+    width: 40%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.form_group{
+    width: 100%;
+    height: 100%;
+    padding-bottom: 1.5rem;
+    margin-top: 0.5rem;
+
+}
+.form_group input{
+    width: 100%;
+}
+
+.middle img{
+    height: 14rem;
+    width: 14rem;
+}
+
+.visually-hidden {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
+input {
+    height: 2.4rem;
+    /* border: 1px solid #6298e5; */
+    border-radius: 5px;
+    width: 16rem;
+    margin-right: 10px;
+    box-sizing: border-box;
+    padding: 0rem 0.4rem;
+    font-size: medium;
+    background-color: #dbeafe;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    color: #344a64;
+}
+.label{
+    color: #afbcc4;
+}
+.hint{
+    /* background-color: #185adb; */
+    color: #185adb;
+    border-radius: 5px 5px 0 0 ;
+    padding: 0.2rem;
+}
+.submition{
+    padding-bottom: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    width: 100%;
+}

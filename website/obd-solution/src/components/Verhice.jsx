@@ -57,8 +57,14 @@ export default function Verhice({ dateDisplay, btnDisplay }) {
 
       {btnDisplay && (
         <div className="btnManager">
-          <button type="submit" id="submit" className="submit">
+          <button id="default" className="submit">
             Thiếp lập mặc định
+          </button>
+          <button id="add" className="submit" >
+            Thêm trạm
+          </button>
+          <button id="remove" className="submit">
+            Xóa Trạm
           </button>
         </div>
       )}

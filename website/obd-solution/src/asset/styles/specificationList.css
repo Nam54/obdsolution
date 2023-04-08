@@ -1,0 +1,62 @@
+.SpeList table{
+    /* border-radius: 1rem 1rem; */
+    margin-top: 1rem;
+    width: 50vw;
+    padding: auto;
+    margin: auto;
+    
+}
+
+.SpeList thead th{
+    /* border-radius: 1rem 1rem 0 0; */
+    background-color: white !important;
+    color: #a3abd2;
+    border-bottom: 2px solid #6a5af9;
+    padding: 0.5rem;
+    box-sizing: border-box;
+
+}
+
+.SpeList thead th, .SpeList tbody td {
+    padding-left: 2rem;
+}
+
+
+.SpeList .spelist_btn{
+    width: 1rem;
+    padding: auto;
+    margin-right: 1rem;
+}
+
+tbody{
+    background-color: white !important;
+}
+
+tbody tr:nth-child(odd){
+    background-color: #f2f2f3;
+}
+
+td > div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.mprimary, .msecondary {
+    /* background-color: #3b82f6; */
+    color: white;
+    padding: 0.5rem 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.mprimary{
+    background-color: #3b82f6;
+}
+
+.msecondary{
+    background-color: #f63b4b;
+}

@@ -15,7 +15,7 @@ function App() {
       <div>
         <Navbar username={adminUser.username} />
       </div>
-      <Verhice dateDisplay={true} btnDisplay={false}/>
+      <Verhice infoBtnDisplay={true} btnDisplay={false}/>
       <div className="cttable">
         <Table rowsPerPage={20} />
       </div>

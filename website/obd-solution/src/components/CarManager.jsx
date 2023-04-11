@@ -19,8 +19,6 @@ const vhc1 = {
     {'s': 8,'n':'KM','v':true},
     {'s': 10,'n':'DC','v':true},
   ]
-
-  
 };
 
 

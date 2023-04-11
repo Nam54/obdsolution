@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../../src/asset/images/head-logo.jpg";
 import "../../src/asset/styles/navbar.css";
-import classNames from "classnames";
+
 
 export default function Navbar({ username }) {
   return (

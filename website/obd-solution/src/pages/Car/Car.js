@@ -4,7 +4,6 @@ import CarComponent from "../../components/CarManager";
 import Verhice from "../../components/Verhice";
 import Navbar from "../../components/Navbar";
 
-
 const adminUser = {
   username: "admin",
   password: "admin",
@@ -15,7 +14,7 @@ export default function Car() {
     <div className="page_container">
       <Navbar username={adminUser.username} />
 
-      <Verhice dateDisplay={false} btnDisplay={true} />
+      <Verhice infoBtnDisplay={false} btnDisplay={true} />
       <div className="cttable">
         <CarComponent />
       </div>

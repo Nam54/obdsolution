@@ -1,7 +1,7 @@
 .login {
     background-image: url('../../asset/images/bus.svg');
     width: 100%;
-    height: 70vh;
+    height: 80vh;
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
@@ -9,21 +9,21 @@
     position: absolute;
 }
 
-.form {
+.form_login {
     width: 30%;
-    height: 50%;
-    background-color: rgba(255, 255, 255, 00.3);
+    height: fit-content;
+    background-color: rgba(255, 255, 255, 0.4);
     border: 2px solid #2b9ddf;
     padding: 1rem 2rem 2rem 2rem;
     border-radius: 5px;
     position: relative;
-    top: 30%;
+    top: 20%;
     left: 35%;
     color: #015c92;
     backdrop-filter: blur(2px);
 }
 
-.form h2 {
+.form_login h2 {
     color: #08273a;
     font-size: 1.2em;
     font-weight: 700;
@@ -31,7 +31,7 @@
     margin-bottom: 1em;
 }
 
-.form input {
+.form_login input {
     width: 100%;
     color: #031723;
     background-color: rgba(255, 255, 255, 0);
@@ -39,23 +39,23 @@
     border-bottom: 1px solid #08273a;
 }
 
-.form input::placeholder {
-    color: #0d2a3c;
+.form_login input::placeholder {
+    color: #015c92;
 }
 
-.form input:focus::placeholder {
-    color: #031723;
-    font-size: larger;
+.form_login input:focus::placeholder {
+    color: #2b9ddf;
+   
 }
 
 
-.form input:focus {
+.form_login input:focus {
     outline: none;
     border-bottom: 2px solid #2b9ddf;
 
 }
 
-.form .submitbtn {
+.form_login .submitbtn {
     width: 30%;
     text-align: center;
     background-color: #2b9ddf;
@@ -63,27 +63,20 @@
     border-radius: 0.5rem;
     padding: 0.4em;
     color: aliceblue;
+    margin: 1rem 0;
+    transition: all 0.25s ease-in-out;
 }
 
-.form .submitbtn:hover {
+.form_login .submitbtn:hover {
     background-color: #015c92;
     cursor: pointer;
     color: white;
 }
 
-.oops {
-    position: inherit;
-    top: 0;
-    left: 0;
-    margin: 1rem;
-    width: 18%;
-    height: 100%;
-    font-size: 1.5rem;
-    font-weight: bolder;
-    color: #2b9ddf;
+.errors{
+    margin-top: 0.3rem;
+    padding: 0.4rem;
+    background-color: rgba(224,68,83,0.8);
+    color: white;
 }
 
-.oops h1 {
-    width: fit-content;
-    font-family: 'Francois One', sans-serif;
-}

@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../../src/asset/styles/verhice.css";
 
 const verhiceid = [
@@ -37,8 +37,6 @@ const verhice = [
   },
 ];
 
-
-
 export default function Verhice({ infoBtnDisplay, btnDisplay }) {
   // Check dropdown list
   const [isActive, setActive] = useState(false);
@@ -49,20 +47,59 @@ export default function Verhice({ infoBtnDisplay, btnDisplay }) {
   // Check if infomation area is expanded or not
   const [isExpanded, setExpanded] = useState(false);
 
-  // Change text of button 
+  // Change text of button
   const [textExpandShow, setTextExpandShow] = useState("Xem thông tin xe");
 
+  // List of verhices
+  const [verhices, setVerhices] = useState(null)
 
-  const setExpandedFunc = (isExp)=>{
-    
-    if(isExp){
+  // Loading status
+  const [loading, setLoading] = useState(true);
+
+  // Handle errors
+  const [error, setError] = useState(null);
+
+  // Fetching list of verhices from APIs server
+
+  useEffect(() => {
+    fetch(`http://194.233.103.107:3000/api/vehicle`).then((response) => {
+      if (!response.ok) {
+        throw new Error(
+          `This is an HTTP error: The status is ${response.status}`
+        );
+      }
+      return response.vehicles;
+    })
+    .then((data) =>{
+      setVerhices(data);
+      setError(null)
+    })
+    .catch((err) => {
+      setError(err.message);
+      setVerhices(null);
+    })
+    .finally(() => {
+      setLoading(false);
+    });
+  }, []);
+
+  const setExpandedFunc = (isExp) => {
+    if (isExp) {
       setTextExpandShow("Ẩn thông tin xe");
-    }
-    else{
+    } else {
       setTextExpandShow("Xem thông tin xe");
     }
-    setExpanded(!isExp)
-}
+    setExpanded(!isExp);
+  };
+
+  // Fetching data form APIs when have a vehicle is selected
+  const verhiceChange = (e) => {
+    // Use Hook to set verhice's selected
+    setSelected();
+    // Hide List
+    setActive(false);
+  };
+
   return (
     <div className="filter_container">
       <div className="filter_action">
@@ -76,19 +113,13 @@ export default function Verhice({ infoBtnDisplay, btnDisplay }) {
             <i class="fa-solid fa-circle-chevron-down"></i>
           </div>
 
-
           {isActive && (
             <div className="dropdown-list">
               {verhice.map((item) => (
                 <div
                   className="dropdown-list-item"
                   key={item.id}
-                  onClick={(e) => {
-                    // Use Hook to set verhice's selected
-                    setSelected(item);
-                    // Hide List
-                    setActive(false);
-                  }}
+                  onClick={verhiceChange}
                 >
                   {/* id means for "Biển số xe" */}
                   {item.id}
@@ -97,7 +128,7 @@ export default function Verhice({ infoBtnDisplay, btnDisplay }) {
             </div>
           )}
         </div>
-        
+
         {/* Display infomations of verhices should be just in home (App) page */}
         {infoBtnDisplay && (
           <button
@@ -107,9 +138,7 @@ export default function Verhice({ infoBtnDisplay, btnDisplay }) {
               setExpandedFunc(isExpanded);
             }}
           >
-            
             {textExpandShow}
-            
           </button>
         )}
 
@@ -128,8 +157,6 @@ export default function Verhice({ infoBtnDisplay, btnDisplay }) {
           </div>
         )}
       </div>
-
-
 
       {/* Display infomation of verhice */}
       {isExpanded && (

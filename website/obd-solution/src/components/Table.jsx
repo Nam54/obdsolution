@@ -10,7 +10,7 @@ export default function Table({ rowsPerPage, NameOfVehicle }) {
 
   const { slice, range } = useTable(spec, page, rowsPerPage);
   const [column, setColumn] = useState([]);
-
+  console.log(NameOfVehicle)
   useEffect(() => {
     const dataFetch = async () => {
       const data = await (
@@ -25,7 +25,7 @@ export default function Table({ rowsPerPage, NameOfVehicle }) {
     };
     console.log(column);
     dataFetch();
-  }, []);
+  }, [NameOfVehicle]);
 
   return (
     <div>

@@ -13,6 +13,7 @@ function App() {
 
   const[vehicleSelected, setVehicleSelected] = useState(''); 
 
+  console.log(vehicleSelected);
 
 
   return (
@@ -21,7 +22,7 @@ function App() {
         <div>
           <Navbar username={adminUser.username} />
         </div>
-        <Vehicle infoBtnDisplay={true} btnDisplay={false} passName={setVehicleSelected} />
+        <Vehicle infoBtnDisplay={true} btnDisplay={false} passName={(name)=>setVehicleSelected(name)} />
         <div className="cttable">
           <Table rowsPerPage={10} NameOfVehicle={vehicleSelected}/>
         </div>

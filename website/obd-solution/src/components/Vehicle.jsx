@@ -35,7 +35,7 @@ export default function Vehicle({ infoBtnDisplay, btnDisplay, passName }) {
 
   useEffect(() => {
     const dataFetch = async () => {
-      const data = await (
+      const data = await(
         await fetch(`http://192.168.1.7:3000/api/vehicle/Kha_pham`)
       ).json();
 
@@ -45,7 +45,6 @@ export default function Vehicle({ infoBtnDisplay, btnDisplay, passName }) {
     dataFetch();
   }, []);
 
-  console.log(data);
 
   // Set content for button hide and show infomation of vehicle
   const setExpandedFunc = (isExp) => {
@@ -98,6 +97,7 @@ export default function Vehicle({ infoBtnDisplay, btnDisplay, passName }) {
                     setActive(false);
                     passName(item.Name);
                     setIdV(item.Name);
+                    console.log(item.Name);
                   }}
                 >
                   {/* id means for "Biển số xe" */}

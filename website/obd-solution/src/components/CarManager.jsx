@@ -9,21 +9,22 @@ const vhc1 = {
   named: "xe 01",
   lastPos: "1017 LVL",
   phone: "0386379007",
-  spe:[    
-    {'s': 1,'n':'Xăng','v':true},
-    {'s': 2,'n':'Nhớt','v':true},
-    {'s': 3,'n':'Dung tích','v':false},
-    {'s': 5,'n':'Gia tốc','v':false},
-    {'s': 6,'n':'Độ trễ','v':true},
-    {'s': 7,'n':'Vận tốc tối đa','v':false},
-    {'s': 8,'n':'KM','v':true},
-    {'s': 10,'n':'DC','v':true},
+  data:[    
+    {'s': 1,'n':'Time','v':true},
+    {'s': 2,'n':'022','v':true},
+    {'s': 3,'n':'PEDAL','v':false},
+    {'s': 5,'n':'THROTTLE','v':false},
+    {'s': 6,'n':'NE','v':true},
+    {'s': 7,'n':'MAP','v':false},
+    {'s': 8,'n':'TA','v':true},
+    {'s': 10,'n':'STFT','v':true},
   ]
 };
 
 
 
-export default function CarManager() {
+
+export default function CarManager({vehicleSelected}) {
   const [showSpecifications, setShowSpecifications] = useState(false);
 
   const [textBtnShow, setTextBtnShow] = useState("Thêm trường");
@@ -147,7 +148,7 @@ export default function CarManager() {
         </div>
 
         <div className="SpeList">
-            <SpecificationList list={vhc1.spe}/>
+            <SpecificationList list={vhc1.data}/>
         </div>
       </div>
     </div>

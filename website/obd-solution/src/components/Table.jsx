@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState } from "react";
 import "../../src/asset/styles/table.css";
 import data from "../../src/asset/data/data2.json"
 import useTable from "../hooks/useTable";
@@ -9,19 +9,21 @@ import TableFooter from './TableFooter'
 
 
 
-export default function Table({rowsPerPage}) {
+
+export default function Table({rowsPerPage, idV}) {
     const [page, setPage]=useState(1);
 
     const {slice, range}=useTable(data, page, rowsPerPage);
+
     
-    
+
   return (
     <div>
       <div className="tble_container">
         <table className="table-auto overflow-scroll w-full">
           <thead>
             <tr>
-              <th>Time</th>
+              <th>{idV}</th>
               <th>021</th>
               <th>022</th>
               <th>Pedal</th>

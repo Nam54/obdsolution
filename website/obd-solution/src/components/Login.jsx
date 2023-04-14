@@ -2,7 +2,7 @@ import React from "react";
 import "../../src/asset/styles/login.css";
 // import background from "../../src/asset/images/bus.svg";
 import { useState } from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export default function LoginComponent() {
 
@@ -11,6 +11,7 @@ export default function LoginComponent() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [isError, setIsError] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -21,16 +22,20 @@ export default function LoginComponent() {
     console.log(name, password);
 
 
-    fetch("http://194.233.103.107:3000/api/user/login", {
+    fetch("http://192.168.1.7:3000/api/user/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        
         // 'Content-Type': 'application/x-www-form-urlencoded',
+        
       },
-      body: {
+      body: JSON.stringify({
         name: name,
         password: password,
-      },
+      }),
+      mode:'cors',
+      credentials:'same-origin'
     })
       .then((response) => {
         if (!response.ok) {
@@ -38,14 +43,16 @@ export default function LoginComponent() {
             `This is an HTTP error: The status is ${response.status}`
           );
         }
+        document.cookie = `user=${name}`;
         console.log(response);
         return response;
       })
       .then((res) => {
-        console.log(res);
-        if (res.code === 200) {
-          return <Navigate replace to="/" />;
-        } else if (res.code === 401) {
+        console.log(res.status);
+        if (res.status === 200) {
+          console.log("go");
+          return navigate('/');
+        } else if (res.status === 401) {
           setName("");
           setPassword("");
           setError(res.message);

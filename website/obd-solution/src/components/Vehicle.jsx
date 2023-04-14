@@ -1,48 +1,54 @@
 import React from "react";
-import { useState, useEffect } from "react";
-import "../../src/asset/styles/verhice.css";
+import { useState, useContext } from "react";
+import "../../src/asset/styles/vehicle.css";
+import IdContext from "../contexts/IdContext";
 
-const verhiceid = [
+const vehicleid = [
   { id: "59-GH19894" },
   { id: "59-GH02839" },
   { id: "59-GH10343" },
   { id: "59-GH18972" },
   { id: "59-GH86353" },
 ];
-const verhice = [
+const vehicles = [
   {
-    id: verhiceid[0].id,
+    id: vehicleid[0].id,
     phone: "03927192812",
     datecf: "1/1/2023",
   },
   {
-    id: verhiceid[1].id,
+    id: vehicleid[1].id,
     phone: "03927192382",
     datecf: "1/1/2023",
   },
   {
-    id: verhiceid[2].id,
+    id: vehicleid[2].id,
     phone: "03927190802",
     datecf: "1/1/2023",
   },
   {
-    id: verhiceid[3].id,
+    id: vehicleid[3].id,
     phone: "01230192812",
     datecf: "1/1/2023",
   },
   {
-    id: verhiceid[4].id,
+    id: vehicleid[4].id,
     phone: "039123192812",
     datecf: "1/1/2023",
   },
 ];
 
-export default function Verhice({ infoBtnDisplay, btnDisplay }) {
+export default function Vehicle({  infoBtnDisplay, btnDisplay, vehiclesList, setVehicle }) {
+  // Props:
+  // vehiclesList is a list of vehicle we fetched from the Car
+  // setVehicle is callback function to send what vehicle we selected
+
+
   // Check dropdown list
   const [isActive, setActive] = useState(false);
 
-  // Check verhice is selected in dropdown list
-  const [selected, setSelected] = useState(verhice[0]);
+  // Check vehicle is selected in dropdown list
+  const [selected, setSelected] = useState(vehicles[0]);
 
   // Check if infomation area is expanded or not
   const [isExpanded, setExpanded] = useState(false);
@@ -50,39 +56,11 @@ export default function Verhice({ infoBtnDisplay, btnDisplay }) {
   // Change text of button
   const [textExpandShow, setTextExpandShow] = useState("Xem thông tin xe");
 
-  // List of verhices
-  const [verhices, setVerhices] = useState(null)
+  // The ContextAPI to send id of vehciled we selected to home page
+  const { idV, setIdV } = useContext(IdContext);
 
-  // Loading status
-  const [loading, setLoading] = useState(true);
 
-  // Handle errors
-  const [error, setError] = useState(null);
-
-  // Fetching list of verhices from APIs server
-
-  useEffect(() => {
-    fetch(`http://194.233.103.107:3000/api/vehicle`).then((response) => {
-      if (!response.ok) {
-        throw new Error(
-          `This is an HTTP error: The status is ${response.status}`
-        );
-      }
-      return response.vehicles;
-    })
-    .then((data) =>{
-      setVerhices(data);
-      setError(null)
-    })
-    .catch((err) => {
-      setError(err.message);
-      setVerhices(null);
-    })
-    .finally(() => {
-      setLoading(false);
-    });
-  }, []);
-
+  // Set content for button hide and show infomation of vehicle
   const setExpandedFunc = (isExp) => {
     if (isExp) {
       setTextExpandShow("Ẩn thông tin xe");
@@ -92,22 +70,20 @@ export default function Verhice({ infoBtnDisplay, btnDisplay }) {
     setExpanded(!isExp);
   };
 
-  // Fetching data form APIs when have a vehicle is selected
-  const verhiceChange = (e) => {
-    // Use Hook to set verhice's selected
-    setSelected();
-    // Hide List
-    setActive(false);
-  };
-
   return (
     <div className="filter_container">
       <div className="filter_action">
         <div className="til">
           <p>Lọc kết quả</p>
         </div>
-        {/* isActive for display the list of verhices */}
-        <div className="cdropdown" onClick={(e) => setActive(!isActive)}>
+        {/* isActive for display the list of vehicles */}
+        <div
+          className="cdropdown"
+          onClick={(e) => {
+            var xactive = !isActive;
+            setActive(xactive);
+          }}
+        >
           <div className="dropdown-select">
             <span className="select"> {selected.id} </span>
             <i class="fa-solid fa-circle-chevron-down"></i>
@@ -115,11 +91,17 @@ export default function Verhice({ infoBtnDisplay, btnDisplay }) {
 
           {isActive && (
             <div className="dropdown-list">
-              {verhice.map((item) => (
+              {vehicles.map((item) => (
                 <div
                   className="dropdown-list-item"
                   key={item.id}
-                  onClick={verhiceChange}
+                  onClick={() => {
+                    setSelected(item);
+                    // Hide List
+                    setActive(false);
+                    setVehicle(item);
+                    setIdV(item.id);
+                  }}
                 >
                   {/* id means for "Biển số xe" */}
                   {item.id}
@@ -129,7 +111,7 @@ export default function Verhice({ infoBtnDisplay, btnDisplay }) {
           )}
         </div>
 
-        {/* Display infomations of verhices should be just in home (App) page */}
+        {/* Display infomations of vehicles should be just in home (App) page */}
         {infoBtnDisplay && (
           <button
             id="add"
@@ -142,7 +124,7 @@ export default function Verhice({ infoBtnDisplay, btnDisplay }) {
           </button>
         )}
 
-        {/* The actions (crud) should be just in verhices (Cars) manager page */}
+        {/* The actions (crud) should be just in vehicles (Cars) manager page */}
         {btnDisplay && (
           <div className="btnManager">
             <button id="default" className="submit">
@@ -158,7 +140,7 @@ export default function Verhice({ infoBtnDisplay, btnDisplay }) {
         )}
       </div>
 
-      {/* Display infomation of verhice */}
+      {/* Display infomation of vehicle */}
       {isExpanded && (
         <div className="filter_infodropdown">
           <h3>Thông tin cơ bản</h3>

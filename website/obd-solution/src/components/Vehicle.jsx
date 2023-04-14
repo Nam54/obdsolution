@@ -1,54 +1,11 @@
 import React from "react";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import "../../src/asset/styles/vehicle.css";
 import IdContext from "../contexts/IdContext";
 
-const vehicleid = [
-  { id: "59-GH19894" },
-  { id: "59-GH02839" },
-  { id: "59-GH10343" },
-  { id: "59-GH18972" },
-  { id: "59-GH86353" },
-];
-const vehicles = [
-  {
-    id: vehicleid[0].id,
-    phone: "03927192812",
-    datecf: "1/1/2023",
-  },
-  {
-    id: vehicleid[1].id,
-    phone: "03927192382",
-    datecf: "1/1/2023",
-  },
-  {
-    id: vehicleid[2].id,
-    phone: "03927190802",
-    datecf: "1/1/2023",
-  },
-  {
-    id: vehicleid[3].id,
-    phone: "01230192812",
-    datecf: "1/1/2023",
-  },
-  {
-    id: vehicleid[4].id,
-    phone: "039123192812",
-    datecf: "1/1/2023",
-  },
-];
-
-export default function Vehicle({  infoBtnDisplay, btnDisplay, vehiclesList, setVehicle }) {
-  // Props:
-  // vehiclesList is a list of vehicle we fetched from the Car
-  // setVehicle is callback function to send what vehicle we selected
-
-
+export default function Vehicle({ infoBtnDisplay, btnDisplay, passName }) {
   // Check dropdown list
   const [isActive, setActive] = useState(false);
-
-  // Check vehicle is selected in dropdown list
-  const [selected, setSelected] = useState(vehicles[0]);
 
   // Check if infomation area is expanded or not
   const [isExpanded, setExpanded] = useState(false);
@@ -59,6 +16,36 @@ export default function Vehicle({  infoBtnDisplay, btnDisplay, vehiclesList, set
   // The ContextAPI to send id of vehciled we selected to home page
   const { idV, setIdV } = useContext(IdContext);
 
+  // Loading status
+  const [loading, setLoading] = useState(true);
+
+  // Handle errors
+  const [error, setError] = useState(null);
+  // List of vehicles
+  const [data, setData] = useState([
+    {
+      Name: "",
+      SetUpTime: "",
+      Phone: "",
+    },
+  ]);
+
+  // Check vehicle is selected in dropdown list
+  const [selected, setSelected] = useState(data[0]);
+
+  useEffect(() => {
+    const dataFetch = async () => {
+      const data = await (
+        await fetch(`http://192.168.1.7:3000/api/vehicle/Kha_pham`)
+      ).json();
+
+      setData(data.vehicles);
+    };
+
+    dataFetch();
+  }, []);
+
+  console.log(data);
 
   // Set content for button hide and show infomation of vehicle
   const setExpandedFunc = (isExp) => {
@@ -72,6 +59,15 @@ export default function Vehicle({  infoBtnDisplay, btnDisplay, vehiclesList, set
 
   return (
     <div className="filter_container">
+      <div className="visually-hidden">
+        {
+          <ul>
+            {data.map((val) => (
+              <li>{val.name}</li>
+            ))}
+          </ul>
+        }
+      </div>
       <div className="filter_action">
         <div className="til">
           <p>Lọc kết quả</p>
@@ -85,30 +81,32 @@ export default function Vehicle({  infoBtnDisplay, btnDisplay, vehiclesList, set
           }}
         >
           <div className="dropdown-select">
-            <span className="select"> {selected.id} </span>
+            <span className="select"> {selected.Name} </span>
             <i class="fa-solid fa-circle-chevron-down"></i>
           </div>
 
-          {isActive && (
-            <div className="dropdown-list">
-              {vehicles.map((item) => (
+          {
+            isActive && (
+              <div className="dropdown-list">
+              {data.map((item) => (
                 <div
                   className="dropdown-list-item"
-                  key={item.id}
-                  onClick={() => {
+                  key={item.Name}
+                  onClick={(e) => {
                     setSelected(item);
                     // Hide List
                     setActive(false);
-                    setVehicle(item);
-                    setIdV(item.id);
+                    passName(item.Name);
+                    setIdV(item.Name);
                   }}
                 >
                   {/* id means for "Biển số xe" */}
-                  {item.id}
+                  {item.Name}
                 </div>
               ))}
             </div>
-          )}
+            )
+          }
         </div>
 
         {/* Display infomations of vehicles should be just in home (App) page */}
@@ -146,18 +144,23 @@ export default function Vehicle({  infoBtnDisplay, btnDisplay, vehiclesList, set
           <h3>Thông tin cơ bản</h3>
           <p>
             <span>Biển số: </span>
-            {selected.id}
+            {selected.Name}
           </p>
           <p>
             <span>Số điện thoại: </span>
-            {selected.phone}
+            {selected.Phone}
           </p>
           <p>
             <span>Thời gian lập: </span>
-            {selected.datecf}
+            {selected.SetUpTime}
           </p>
         </div>
       )}
     </div>
+    // <ul>
+    //   {data.map((val) => (
+    //     <li>{val.name}</li>
+    //   ))}
+    // </ul>
   );
 }

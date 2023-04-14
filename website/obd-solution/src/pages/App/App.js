@@ -1,30 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../../components/Navbar";
 import Table from "../../components/Table";
 import "./App.css";
 import Vehicle from "../../components/Vehicle";
-import IdContext from "../../contexts/IdContext";
+
 function App() {
-  const [idV, setIdV] = useState(``);
-  const value = { idV, setIdV };
+
   const adminUser = {
     username: "admin",
     password: "admin",
   };
 
-  console.log(idV);
+  const[vehicleSelected, setVehicleSelected] = useState(''); 
+
+
+
   return (
-    <IdContext.Provider value={value}>
+ 
       <div>
         <div>
           <Navbar username={adminUser.username} />
         </div>
-        <Vehicle infoBtnDisplay={true} btnDisplay={false} />
+        <Vehicle infoBtnDisplay={true} btnDisplay={false} passName={setVehicleSelected} />
         <div className="cttable">
-          <Table rowsPerPage={20} idV={idV} />
+          <Table rowsPerPage={10} NameOfVehicle={vehicleSelected}/>
         </div>
       </div>
-    </IdContext.Provider>
+
   );
 }
 

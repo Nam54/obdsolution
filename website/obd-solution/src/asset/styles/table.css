@@ -26,7 +26,7 @@ thead tr{
     
 }
 th,td{
-    text-align: left;
+
     padding: -3px;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -50,7 +50,7 @@ tbody tr{
 }
 
 tbody tr td, thead tr th {
-    padding-left: 1rem;
+    padding-left: 0.4rem;
 }
 
 tbody tr div{
@@ -59,4 +59,10 @@ tbody tr div{
 
 tbody tr:nth-child(odd){
     background-color: #e5ebf3;
+}
+th>div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }

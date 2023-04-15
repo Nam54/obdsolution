@@ -3,7 +3,7 @@ import { useState, useContext, useEffect } from "react";
 import "../../src/asset/styles/vehicle.css";
 import IdContext from "../contexts/IdContext";
 
-export default function Vehicle({ infoBtnDisplay, btnDisplay, passName }) {
+export default function Vehicle({ infoBtnDisplay, btnDisplay, passVehicle }) {
   // Check dropdown list
   const [isActive, setActive] = useState(false);
 
@@ -24,7 +24,7 @@ export default function Vehicle({ infoBtnDisplay, btnDisplay, passName }) {
   // List of vehicles
   const [data, setData] = useState([
     {
-      Name: "",
+      Name: "Chọn xe quản lý",
       SetUpTime: "",
       Phone: "",
     },
@@ -36,7 +36,7 @@ export default function Vehicle({ infoBtnDisplay, btnDisplay, passName }) {
   useEffect(() => {
     const dataFetch = async () => {
       const data = await(
-        await fetch(`http://192.168.1.7:3000/api/vehicle/Kha_pham`)
+        await fetch(`http://192.168.1.7:8080/api/vehicle/Kha_pham`)
       ).json();
 
       setData(data.vehicles);
@@ -95,9 +95,12 @@ export default function Vehicle({ infoBtnDisplay, btnDisplay, passName }) {
                     setSelected(item);
                     // Hide List
                     setActive(false);
-                    passName(item.Name);
+                    console.log(item);
+                    // passName(item.Name);
+                    
+                    passVehicle(item);
                     setIdV(item.Name);
-                    console.log(item.Name);
+                    
                   }}
                 >
                   {/* id means for "Biển số xe" */}

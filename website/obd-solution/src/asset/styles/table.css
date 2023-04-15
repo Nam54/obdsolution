@@ -66,3 +66,33 @@ th>div{
     align-items: center;
     justify-content: center;
 }
+
+.downloadAction{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0.4rem 1rem;
+    margin-top: 1rem;
+    background-color: #d0d4d8;
+    
+}
+
+.allp {
+    color: white;
+    /* border: 1px solid #1a7f37; */
+    background-color: #1a7f37;
+    padding: 0.8rem;
+    margin: 0.5rem;
+}
+
+.thisp{
+    color: white;
+    /* border: 1px solid #1a7f37; */
+    background-color: #c72929;
+    padding: 0.8rem;
+    margin: 0.5rem;
+}
+
+
+

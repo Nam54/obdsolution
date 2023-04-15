@@ -4,6 +4,8 @@ import Table from "../../components/Table";
 import "./App.css";
 import Vehicle from "../../components/Vehicle";
 
+
+
 function App() {
 
   const adminUser = {
@@ -11,9 +13,18 @@ function App() {
     password: "admin",
   };
 
-  const[vehicleSelected, setVehicleSelected] = useState(''); 
+  const defaultVerhice = {
+    Name: "",
+    SetUpTime: "",
+    Phone: "",
+    
+  };
+  const [vehicleOSelected, setVehicleOSelected] = useState(defaultVerhice);
 
-  console.log(vehicleSelected);
+  
+
+
+  console.log(vehicleOSelected);
 
 
   return (
@@ -22,9 +33,9 @@ function App() {
         <div>
           <Navbar username={adminUser.username} />
         </div>
-        <Vehicle infoBtnDisplay={true} btnDisplay={false} passName={(name)=>setVehicleSelected(name)} />
+        <Vehicle infoBtnDisplay={true} btnDisplay={false} passVehicle={setVehicleOSelected} />
         <div className="cttable">
-          <Table rowsPerPage={10} NameOfVehicle={vehicleSelected}/>
+          <Table rowsPerPage={10} Vehicle={vehicleOSelected}/>
         </div>
       </div>
 

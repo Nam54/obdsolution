@@ -9,22 +9,20 @@ const vhc1 = {
   named: "xe 01",
   lastPos: "1017 LVL",
   phone: "0386379007",
-  data:[    
-    {'s': 1,'n':'Time','v':true},
-    {'s': 2,'n':'022','v':true},
-    {'s': 3,'n':'PEDAL','v':false},
-    {'s': 5,'n':'THROTTLE','v':false},
-    {'s': 6,'n':'NE','v':true},
-    {'s': 7,'n':'MAP','v':false},
-    {'s': 8,'n':'TA','v':true},
-    {'s': 10,'n':'STFT','v':true},
-  ]
+  data: [
+    { s: 1, n: "Time", v: true },
+    { s: 2, n: "022", v: true },
+    { s: 3, n: "PEDAL", v: false },
+    { s: 5, n: "THROTTLE", v: false },
+    { s: 6, n: "NE", v: true },
+    { s: 7, n: "MAP", v: false },
+    { s: 8, n: "TA", v: true },
+    { s: 10, n: "STFT", v: true },
+  ],
 };
 
-
-
-
-export default function CarManager({vehicleSelected}) {
+export default function CarManager({ Vehicle }) {
+  console.log(Vehicle);
   const [showSpecifications, setShowSpecifications] = useState(false);
 
   const [textBtnShow, setTextBtnShow] = useState("Thêm trường");
@@ -47,49 +45,59 @@ export default function CarManager({vehicleSelected}) {
         </div>
         <form action="" className="info_form">
           <div className="form_col">
+            {/* Group for name of vehicle */}
             <div className="form_group">
-              <label htmlFor="namec" className="label">
-                Tên xe
+              <label htmlFor="name" className="label">
+                Biển số
               </label>
               <input
+                name="name"
                 type="text"
-                id="namec"
-                placeholder="Tên xe"
-                defaultValue={vhc1.named}
+                id="name"
+                placeholder="Biển số"
+                defaultValue={Vehicle.Name}
               />
             </div>
+            {/* Group for phone */}
             <div className="form_group">
-              <label htmlFor="idc" className="label">
-                Biển số xe
+              <label htmlFor="phone" className="label">
+                Số điện thoại
               </label>
               <input
+                name="phone"
                 type="text"
-                id="idc"
-                placeholder="Biển số xe"
-                defaultValue={vhc1.id}
+                id="phone"
+                placeholder="Số điện thoại"
+                defaultValue={Vehicle.Phone}
               />
             </div>
           </div>
+
+          {/* Middle image, just for UI */}
           <div className="middle">
             <img src={img} alt="m" />
           </div>
+
+
           <div className="form_col">
+            {/* Group for time set up vehicle */}
             <div className="form_group">
-              <label htmlFor="phonec" className="label">
-                Số điện thoại
+              <label htmlFor="time" className="label">
+                Ngày thiết lập
               </label>
               <input
                 type="text"
                 id="idc"
                 placeholder="Số điện thoại"
-                defaultValue={vhc1.phone}
+                defaultValue={Vehicle.SetUpTime}
               />
             </div>
             <div className="form_group">
-              <label htmlFor="lposc" className="label">
-                Vị trí cuối cùng
+              <label htmlFor="lposc" className="label" >
+                Undefined!
               </label>
               <input
+
                 type="text"
                 id="idc"
                 placeholder="Vị trí cuối cùng"
@@ -148,7 +156,7 @@ export default function CarManager({vehicleSelected}) {
         </div>
 
         <div className="SpeList">
-            <SpecificationList list={vhc1.data}/>
+          <SpecificationList list={vhc1.data} />
         </div>
       </div>
     </div>

@@ -36,7 +36,7 @@ export default function CarManager({ Vehicle }) {
     });
 
     // Post data got to the server
-    fetch("http://192.168.1.7:3000/api/data/setup", {
+    fetch("http://localhost:8080/api/data/setup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

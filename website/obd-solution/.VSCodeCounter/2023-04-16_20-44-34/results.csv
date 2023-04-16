@@ -1,0 +1,42 @@
+"filename", "language", "CSS", "JavaScript", "JavaScript JSX", "JSON", "XML", "Markdown", "HTML", "comment", "blank", "total"
+"d:\OBD\obd\website\obd-solution\README.md", "Markdown", 0, 0, 0, 0, 0, 38, 0, 0, 33, 71
+"d:\OBD\obd\website\obd-solution\package-lock.json", "JSON", 0, 0, 0, 30748, 0, 0, 0, 0, 1, 30749
+"d:\OBD\obd\website\obd-solution\package.json", "JSON", 0, 0, 0, 57, 0, 0, 0, 0, 1, 58
+"d:\OBD\obd\website\obd-solution\public\index.html", "HTML", 0, 0, 0, 0, 0, 0, 28, 26, 7, 61
+"d:\OBD\obd\website\obd-solution\public\manifest.json", "JSON", 0, 0, 0, 8, 0, 0, 0, 0, 1, 9
+"d:\OBD\obd\website\obd-solution\src\asset\images\bus.svg", "XML", 0, 0, 0, 0, 266, 0, 0, 1, 1, 268
+"d:\OBD\obd\website\obd-solution\src\asset\styles\Table.module.css", "CSS", 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+"d:\OBD\obd\website\obd-solution\src\asset\styles\TableFooter.module.css", "CSS", 30, 0, 0, 0, 0, 0, 0, 0, 3, 33
+"d:\OBD\obd\website\obd-solution\src\asset\styles\carmanager.css", "CSS", 122, 0, 0, 0, 0, 0, 0, 2, 23, 147
+"d:\OBD\obd\website\obd-solution\src\asset\styles\login.css", "CSS", 69, 0, 0, 0, 0, 0, 0, 0, 14, 83
+"d:\OBD\obd\website\obd-solution\src\asset\styles\member.css", "CSS", 182, 0, 0, 0, 0, 0, 0, 13, 62, 257
+"d:\OBD\obd\website\obd-solution\src\asset\styles\navbar.css", "CSS", 67, 0, 0, 0, 0, 0, 0, 3, 15, 85
+"d:\OBD\obd\website\obd-solution\src\asset\styles\searchbar.css", "CSS", 9, 0, 0, 0, 0, 0, 0, 0, 2, 11
+"d:\OBD\obd\website\obd-solution\src\asset\styles\specificationList.css", "CSS", 47, 0, 0, 0, 0, 0, 0, 3, 12, 62
+"d:\OBD\obd\website\obd-solution\src\asset\styles\table.css", "CSS", 77, 0, 0, 0, 0, 0, 0, 2, 20, 99
+"d:\OBD\obd\website\obd-solution\src\asset\styles\vehicle.css", "CSS", 147, 0, 0, 0, 0, 0, 0, 5, 25, 177
+"d:\OBD\obd\website\obd-solution\src\components\CarManager.jsx", "JavaScript JSX", 0, 0, 211, 0, 0, 0, 0, 15, 22, 248
+"d:\OBD\obd\website\obd-solution\src\components\Login.jsx", "JavaScript JSX", 0, 0, 86, 0, 0, 0, 0, 6, 11, 103
+"d:\OBD\obd\website\obd-solution\src\components\Member.jsx", "JavaScript JSX", 0, 0, 209, 0, 0, 0, 0, 9, 28, 246
+"d:\OBD\obd\website\obd-solution\src\components\Navbar.jsx", "JavaScript JSX", 0, 0, 36, 0, 0, 0, 0, 0, 5, 41
+"d:\OBD\obd\website\obd-solution\src\components\SearchBar.jsx", "JavaScript JSX", 0, 0, 26, 0, 0, 0, 0, 0, 6, 32
+"d:\OBD\obd\website\obd-solution\src\components\SpecificationsList.jsx", "JavaScript JSX", 0, 0, 65, 0, 0, 0, 0, 34, 13, 112
+"d:\OBD\obd\website\obd-solution\src\components\Table.jsx", "JavaScript JSX", 0, 0, 116, 0, 0, 0, 0, 14, 20, 150
+"d:\OBD\obd\website\obd-solution\src\components\TableFooter.jsx", "JavaScript JSX", 0, 0, 24, 0, 0, 0, 0, 1, 6, 31
+"d:\OBD\obd\website\obd-solution\src\components\Vehicle.jsx", "JavaScript JSX", 0, 0, 298, 0, 0, 0, 0, 24, 24, 346
+"d:\OBD\obd\website\obd-solution\src\contexts\DateContext.js", "JavaScript", 0, 7, 0, 0, 0, 0, 0, 0, 0, 7
+"d:\OBD\obd\website\obd-solution\src\contexts\IdContext.js", "JavaScript", 0, 6, 0, 0, 0, 0, 0, 0, 1, 7
+"d:\OBD\obd\website\obd-solution\src\contexts\VehicleContext.js", "JavaScript", 0, 11, 0, 0, 0, 0, 0, 0, 1, 12
+"d:\OBD\obd\website\obd-solution\src\hooks\useTable.js", "JavaScript", 0, 25, 0, 0, 0, 0, 0, 2, 10, 37
+"d:\OBD\obd\website\obd-solution\src\index.css", "CSS", 11, 0, 0, 0, 0, 0, 0, 0, 2, 13
+"d:\OBD\obd\website\obd-solution\src\index.js", "JavaScript", 0, 27, 0, 0, 0, 0, 0, 0, 4, 31
+"d:\OBD\obd\website\obd-solution\src\pages\App\App.css", "CSS", 3, 0, 0, 0, 0, 0, 0, 0, 0, 3
+"d:\OBD\obd\website\obd-solution\src\pages\App\App.js", "JavaScript", 0, 33, 0, 0, 0, 0, 0, 0, 11, 44
+"d:\OBD\obd\website\obd-solution\src\pages\Car\Car.css", "CSS", 10, 0, 0, 0, 0, 0, 0, 2, 1, 13
+"d:\OBD\obd\website\obd-solution\src\pages\Car\Car.js", "JavaScript", 0, 33, 0, 0, 0, 0, 0, 0, 10, 43
+"d:\OBD\obd\website\obd-solution\src\pages\Login\Login.css", "CSS", 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+"d:\OBD\obd\website\obd-solution\src\pages\Login\Login.js", "JavaScript", 0, 12, 0, 0, 0, 0, 0, 0, 1, 13
+"d:\OBD\obd\website\obd-solution\src\pages\User\User.css", "CSS", 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+"d:\OBD\obd\website\obd-solution\src\pages\User\User.js", "JavaScript", 0, 12, 0, 0, 0, 0, 0, 0, 1, 13
+"d:\OBD\obd\website\obd-solution\tailwind.config.js", "JavaScript", 0, 10, 0, 0, 0, 0, 0, 1, 1, 12
+"Total", "-", 774, 176, 1071, 30813, 266, 38, 28, 163, 401, 33730

@@ -63,7 +63,7 @@ export default function Member() {
 
     const dataFetch = async () => {
       const data = await (
-        await fetch(`http://192.168.1.7:3000/api/vehicle`,{
+        await fetch(`http://localhost:8080/api/vehicle`,{
           headers: {
             authorization:accessToken
           }
@@ -90,7 +90,7 @@ export default function Member() {
       if(t[0].trim() === 'access_token') accessToken= t[1];  
     })
     // Post data got to the server
-    fetch("http://192.168.1.7:3000/api/user/register", {
+    fetch("http://localhost:8080/api/user/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

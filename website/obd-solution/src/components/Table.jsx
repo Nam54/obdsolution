@@ -21,7 +21,8 @@ const mapHeader = (column) => {
 
 // Replace '.' to '_' when download file
 const removeDot=(bx)=>{
-      return bx
+      var nbx= bx.replace('.','_')
+      return bx;
 }
 
 // Component
@@ -131,7 +132,7 @@ export default function Table({ rowsPerPage, Vehicle, Date }) {
           <CSVLink
             data={spec}
             headers={mapHeader(column)}
-            filename={removeDot(Vehicle.Name)}
+            filename="Data"
             target="_blank"
           >
             Download All Data

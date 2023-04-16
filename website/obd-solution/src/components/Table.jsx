@@ -50,7 +50,7 @@ export default function Table({ rowsPerPage, Vehicle, Date }) {
     const dataFetch = async () => {
       const data = await (
         await fetch(
-          `http://localhost:8080/api/data?vehicle_name=${Vehicle.Vehicle_name}&limit=20`,{
+          `http://194.233.103.107:8080/api/data?vehicle_name=${Vehicle.Vehicle_name}&limit=20`,{
             headers: {
               authorization:accessToken
             }

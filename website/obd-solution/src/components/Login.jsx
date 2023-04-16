@@ -19,7 +19,7 @@ export default function LoginComponent() {
     // const formJson = Object.fromEntries(formData.entries());
     console.log(name, password);
 
-    fetch("http://localhost:8080/api/user/login", {
+    fetch("http://194.233.103.107:8080/api/user/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

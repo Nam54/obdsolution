@@ -22,7 +22,7 @@ export default function SpecificationList({ id }) {
     const dataFetch = async () => {
       const data = await (
         await fetch(
-          `http://localhost:8080/api/data/setup/${id.Vehicle_name}`,
+          `http://194.233.103.107:8080/api/data/setup/${id.Vehicle_name}`,
           {
             headers: {
               authorization: accessToken,

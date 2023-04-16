@@ -65,7 +65,7 @@ export default function Vehicle({
     console.log(accessToken);
     const dataFetch = async () => {
       const data = await (
-        await fetch(`http://localhost:8080/api/vehicle/`, {
+        await fetch(`http:/194.233.103.107:8080/api/vehicle/`, {
           headers: {
             authorization: accessToken,
           },
@@ -113,7 +113,7 @@ export default function Vehicle({
       if(t[0].trim() === 'access_token') accessToken= t[1];  
     })
     // Post data got to the server
-    fetch("http://localhost:8080/api/vehicle", {
+    fetch("http://194.233.103.107:8080/api/vehicle", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Navbar from "../../components/Navbar";
 import Table from "../../components/Table";
 import "./App.css";
@@ -20,12 +20,10 @@ function App() {
     
   };
   const [vehicleOSelected, setVehicleOSelected] = useState(defaultVerhice);
-
-  
-
-
-  console.log(vehicleOSelected);
-
+  const [dateSelected, setDateSelected] = useState({
+    startDate: new Date(),
+    endDate: new Date().setMonth(11),
+  })
 
   return (
  
@@ -33,9 +31,9 @@ function App() {
         <div>
           <Navbar username={adminUser.username} />
         </div>
-        <Vehicle infoBtnDisplay={true} btnDisplay={false} passVehicle={setVehicleOSelected} />
+        <Vehicle infoBtnDisplay={true} btnDisplay={false} dateDisplay={true} passVehicle={setVehicleOSelected} />
         <div className="cttable">
-          <Table rowsPerPage={10} Vehicle={vehicleOSelected}/>
+          <Table rowsPerPage={10} Vehicle={vehicleOSelected} />
         </div>
       </div>
 

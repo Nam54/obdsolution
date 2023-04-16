@@ -18,6 +18,7 @@
     flex-direction: row;
     align-items: center;
     padding: 1rem;
+    width: 100%;
 }
 
 .filter_infodropdown{
@@ -85,12 +86,28 @@
     color: #dbeafe;
 }
 
-.mdate{
+.datepicker{
     width: 20rem !important;
-    border: 1px solid #344a64;
+    /* border: 1px solid #344a64; */
     border-radius: 5px;
-    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    /* box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2); */
+} 
+
+.datepicker >div{
+    display: flex;
+    flex-direction: row;
 }
+
+.datepicker{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.datepicker > .submit{
+    width: 16rem;
+}
+
 
 .til{
     display: flex;
@@ -104,6 +121,7 @@
 .submit{
     color: #ecf6fb;
     margin-left: 1.8rem;
+    margin-right: 1.8rem;
     background-color: #6a5af9;
     height: 2.4rem;
     box-sizing: border-box;
@@ -132,4 +150,28 @@
     position: absolute;
     white-space: nowrap;
     width: 1px;
+}
+.date{
+    display: flex;
+    flex-direction: row;
+}
+
+.formrow{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+
+}
+.formrow input{
+    width: 19.8rem;
+    margin-left: 8rem;
+}
+.btnsm{
+    justify-content: flex-end;
+    margin: 1rem 0;
+}
+
+.form_add_vehicle{
+    border-top: 1px dashed #344a64;
+    padding-top: 1rem;
 }

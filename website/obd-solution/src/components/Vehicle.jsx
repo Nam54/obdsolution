@@ -1,9 +1,17 @@
 import React from "react";
-import { useState, useContext, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "../../src/asset/styles/vehicle.css";
-import IdContext from "../contexts/IdContext";
+import Datepicker from "react-tailwindcss-datepicker";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-export default function Vehicle({ infoBtnDisplay, btnDisplay, passVehicle }) {
+export default function Vehicle({
+  infoBtnDisplay,
+  btnDisplay,
+  dateDisplay,
+  passVehicle,
+  passDate,
+}) {
   // Check dropdown list
   const [isActive, setActive] = useState(false);
 
@@ -12,12 +20,6 @@ export default function Vehicle({ infoBtnDisplay, btnDisplay, passVehicle }) {
 
   // Change text of button
   const [textExpandShow, setTextExpandShow] = useState("Xem thông tin xe");
-
-  // The ContextAPI to send id of vehciled we selected to home page
-  const { idV, setIdV } = useContext(IdContext);
-
-  // Loading status
-  const [loading, setLoading] = useState(true);
 
   // Handle errors
   const [error, setError] = useState(null);
@@ -30,21 +32,52 @@ export default function Vehicle({ infoBtnDisplay, btnDisplay, passVehicle }) {
     },
   ]);
 
+  // State for add new vehicle form
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [btnAdd, setBtnAdd] = useState("Thêm xe");
+  const [isShowAdd, setIsShowAdd] = useState(false);
+
   // Check vehicle is selected in dropdown list
   const [selected, setSelected] = useState(data[0]);
 
+  // Filter data by date
+  const [value, setValue] = useState({
+    startDate: new Date(),
+    endDate: new Date().setMonth(11),
+  });
+
+  const handleValueChange = (newValue) => {
+    console.log("newValue:", newValue);
+    setValue(newValue);
+  };
+
+  const token = document.cookie.access_token;
+
   useEffect(() => {
+    var accessToken = "";
+    const c = document.cookie.split(";");
+    c.forEach((e) => {
+      let t = e.split("=");
+      if (t[0].trim() === "access_token") accessToken = t[1];
+    });
+
+    console.log(accessToken);
     const dataFetch = async () => {
-      const data = await(
-        await fetch(`http://192.168.1.7:8080/api/vehicle/Kha_pham`)
+      const data = await (
+        await fetch(`http://192.168.1.7:3000/api/vehicle/`, {
+          headers: {
+            authorization: accessToken,
+          },
+        })
       ).json();
 
       setData(data.vehicles);
     };
 
+    console.log(data);
     dataFetch();
   }, []);
-
 
   // Set content for button hide and show infomation of vehicle
   const setExpandedFunc = (isExp) => {
@@ -54,6 +87,94 @@ export default function Vehicle({ infoBtnDisplay, btnDisplay, passVehicle }) {
       setTextExpandShow("Xem thông tin xe");
     }
     setExpanded(!isExp);
+  };
+
+  // To send value date
+
+  // when click the add button
+  const showAdd = () => {
+    var state = isShowAdd;
+    setIsShowAdd(!state);
+    if (state) {
+      setBtnAdd("Thêm xe");
+    } else {
+      setBtnAdd("Hủy thêm");
+    }
+  };
+
+  // Submit form to API server
+  const handleSubmit = (event) => {
+    // Prevent form submission on first load
+    event.preventDefault();
+    var accessToken = ''
+    const c = document.cookie.split(';');
+    c.forEach(e => {
+      let t = e.split('=');
+      if(t[0].trim() === 'access_token') accessToken= t[1];  
+    })
+    // Post data got to the server
+    fetch("http://192.168.1.7:3000/api/vehicle", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        authorization:accessToken
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: JSON.stringify({
+        Vehicle_name: name,
+        Don_vi_QL: "Elogis",
+        Type: "CONTAINER",
+        VIN_number: "QWWE123456789",
+        Engine: "MAN",
+        Last_fix: "01/04/2023",
+        Phone_number:phone,
+        Driver: "Doan Ngoc Nam",
+        Year_of_manufacture: "2020",
+        Engine_number: "BCD123",
+        Mining_time: "10",
+        History_fix: "01/04/2023",
+        Registration_deadline: "01/04/2024",
+      }),
+      mode: "cors",
+      credentials: "same-origin",
+    })
+      .then((response) => {
+        if (!response.ok) {
+          toast.error('An error was occured', {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            })
+        }
+        console.log(response);
+        return response.json();
+      })
+      .then((res) => {
+        console.log(res.code);
+        if (res.code === 200) {
+          toast.success("Vehicle war created succesfully!", {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+        } else if (res.status === 401) {
+          setPhone("");
+          setName("");
+          setError(res.message);
+        } else {
+          setError("Some error occured");
+        }
+      });
   };
 
   return (
@@ -80,36 +201,30 @@ export default function Vehicle({ infoBtnDisplay, btnDisplay, passVehicle }) {
           }}
         >
           <div className="dropdown-select">
-            <span className="select"> {selected.Name} </span>
+            <span className="select"> {selected.Vehicle_name} </span>
             <i class="fa-solid fa-circle-chevron-down"></i>
           </div>
 
-          {
-            isActive && (
-              <div className="dropdown-list">
+          {isActive && (
+            <div className="dropdown-list">
               {data.map((item) => (
                 <div
                   className="dropdown-list-item"
-                  key={item.Name}
+                  key={item.Vehicle_name}
                   onClick={(e) => {
                     setSelected(item);
                     // Hide List
                     setActive(false);
                     console.log(item);
-                    // passName(item.Name);
-                    
                     passVehicle(item);
-                    setIdV(item.Name);
-                    
                   }}
                 >
                   {/* id means for "Biển số xe" */}
-                  {item.Name}
+                  {item.Vehicle_name}
                 </div>
               ))}
             </div>
-            )
-          }
+          )}
         </div>
 
         {/* Display infomations of vehicles should be just in home (App) page */}
@@ -124,6 +239,37 @@ export default function Vehicle({ infoBtnDisplay, btnDisplay, passVehicle }) {
             {textExpandShow}
           </button>
         )}
+        {/* Display date select range */}
+        {dateDisplay && (
+          <div className="date">
+            <div className="datepicker">
+              <Datepicker
+                // primaryColor={"fuchsia"}
+                value={value}
+                onChange={handleValueChange}
+                showShortcuts={false}
+              />
+            </div>
+            <button
+              className="submit"
+              onClick={() => {
+                toast.info("Chức năng này hiện chưa khả dụng!", {
+                  position: "top-center",
+                  autoClose: 5000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                  theme: "dark",
+                });
+              }}
+            >
+              Lọc kết quả
+            </button>
+            <ToastContainer />
+          </div>
+        )}
 
         {/* The actions (crud) should be just in vehicles (Cars) manager page */}
         {btnDisplay && (
@@ -131,8 +277,8 @@ export default function Vehicle({ infoBtnDisplay, btnDisplay, passVehicle }) {
             <button id="default" className="submit">
               Thiếp lập mặc định
             </button>
-            <button id="add" className="submit">
-              Thêm Xe
+            <button id="add" className="submit" onClick={showAdd}>
+              {btnAdd}
             </button>
             <button id="remove" className="submit">
               Xóa Xe
@@ -147,23 +293,53 @@ export default function Vehicle({ infoBtnDisplay, btnDisplay, passVehicle }) {
           <h3>Thông tin cơ bản</h3>
           <p>
             <span>Biển số: </span>
-            {selected.Name}
+            {selected.Vehicle_name}
           </p>
           <p>
             <span>Số điện thoại: </span>
-            {selected.Phone}
+            {selected.Phone_number}
           </p>
           <p>
-            <span>Thời gian lập: </span>
-            {selected.SetUpTime}
+            <span>Lần sửa chữa cuối </span>
+            {selected.Last_fix}
           </p>
         </div>
       )}
+
+      {/* Display form to add new vehicle */}
+      {isShowAdd && (
+        <div className="form_add_vehicle">
+          <form action="post" onSubmit={handleSubmit}>
+            <div>
+              <div className="formrow inp">
+                <label htmlFor="name" className="visually-hidden">
+                  Name
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  id="nameadd"
+                  placeholder="Tên xe"
+                  onChange={(e) => setName(e.target.value)}
+                />
+                <label htmlFor="phone" className="visually-hidden">
+                  Phone
+                </label>
+                <input
+                  type="text"
+                  name="phone"
+                  id="phoneadd"
+                  placeholder="Số điện thoại"
+                  onChange={(e) => setPhone(e.target.value)}
+                />
+              </div>
+              <div className="formrow btnsm">
+                <button className="submit addSubmit"> Thêm </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      )}
     </div>
-    // <ul>
-    //   {data.map((val) => (
-    //     <li>{val.name}</li>
-    //   ))}
-    // </ul>
   );
 }

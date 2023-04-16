@@ -86,7 +86,7 @@
 
 }
 
-.add_member .submit i::after {
+/* .add_member .submit i::after {
     content: "Add";
     position: absolute;
     opacity: 0;
@@ -94,7 +94,7 @@
     right: -20px;
     transition: 0.25s;
     font-size: 0.8rem;
-}
+} */
 
 .add_member .submit:hover i {
     padding-right: 40px;

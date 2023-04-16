@@ -1,23 +1,17 @@
 import React from "react";
 import "../../src/asset/styles/member.css";
 import Search from "./SearchBar";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const users = [
-  { id: "1", fullname: "John" },
-  { id: "2", fullname: "Lier 1" },
-  { id: "3", fullname: "Heart Breaker" },
-  { id: "4", fullname: "Unused" },
-  { id: "5", fullname: "Javascript" },
-];
-
-const verhices = [
-  { id: "U1_1", bx: "59-GH19894" },
-  { id: "U1_2", bx: "59-GH02839" },
-  { id: "U1_3", bx: "59-GH10343" },
-  { id: "U1_4", bx: "59-GH18972" },
-  { id: "U1_5", bx: "59-GH86353" },
+  { id: "1", fullname: "Kha" },
+  { id: "2", fullname: "Cường" },
+  { id: "3", fullname: "Danh" },
+  { id: "4", fullname: "Long" },
+  { id: "5", fullname: "Hoa" },
 ];
 
 const filterUser = (users, query) => {
@@ -31,20 +25,139 @@ const filterUser = (users, query) => {
   });
 };
 
+
+
 export default function Member() {
+  // Name of user added
+  const [name, setName] = useState("");
+  // Password of user added
+  const [password, setPassword] = useState("");
+  // Forhandling errors
+  const [error, setError] = useState("");
+  const [isError, setIsError] = useState(false);
+
+  // Search bar section
   const { search } = window.location;
   const query = new URLSearchParams(search).get("s");
   const [searchQuery, setSearchQuery] = useState(query || "");
   const filteredUsers = filterUser(users, searchQuery);
 
+
+   // List of vehicles
+   const [data, setData] = useState([
+    {
+      Name: "",
+      SetUpTime: "",
+      Phone: "",
+    },
+  ]);
+
+  useEffect(() => {
+
+    var accessToken = ''
+    const c = document.cookie.split(';');
+    c.forEach(e => {
+      let t = e.split('=');
+      if(t[0].trim() === 'access_token') accessToken= t[1];  
+    })
+
+    const dataFetch = async () => {
+      const data = await (
+        await fetch(`http://192.168.1.7:3000/api/vehicle`,{
+          headers: {
+            authorization:accessToken
+          }
+        })
+      ).json();
+      
+      setData(data.vehicles);
+    };
+    console.log(data);
+    dataFetch();
+  }, []);
+
+
+  // When the form was submitted
+  const handleSubmit = (event) => {
+
+    // Prevent form submission on first load
+    event.preventDefault();
+  
+    var accessToken = ''
+    const c = document.cookie.split(';');
+    c.forEach(e => {
+      let t = e.split('=');
+      if(t[0].trim() === 'access_token') accessToken= t[1];  
+    })
+    // Post data got to the server
+    fetch("http://192.168.1.7:3000/api/user/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        authorization:accessToken
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+        
+      },
+      body: JSON.stringify({
+        name: name,
+        password: password,
+        "address": ""
+      }),
+      mode:'cors',
+      credentials:'same-origin'
+    })
+      .then((response) => {
+        if (!response.ok) {
+          toast.error('An error was occured', {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            })
+
+        }
+        
+        return response.json();
+      })
+      .then((res) => {
+        console.log(res.code);
+        if (res.code === 200) {
+          toast.success('Member war created succesfully!', {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            })
+        } else if (res.code === 409) {
+          setName("");
+          setPassword("");
+          setError(res.message);
+          setIsError(true);
+          
+        } else {
+          setError("Some error occured");
+        }
+      });
+  };
+  
   return (
     <div className="custom_container">
       <div className="add_member">
         <div className="custom_form">
           <h2>Thêm thành viên</h2>
-          <form action="">
-            <input type="text" placeholder="Thêm thành viên" id="name" />
-            <input type="password" placeholder="Password" id="password" />
+          <form action="post" onSubmit={handleSubmit} >
+            <label htmlFor="name" className="visually-hidden">Name </label>
+            <input type="text" placeholder="Thêm thành viên" id="name" name="name" onChange={(e)=>setName(e.target.value)}/>
+            <label htmlFor="password" className="visually-hidden">Password</label>
+            <input type="password" placeholder="Password" id="password" name="password" onChange={(e)=>setPassword(e.target.value)} />
             <select
               name="role"
               id="role"
@@ -57,8 +170,8 @@ export default function Member() {
               <option value="Viewer">Viewer</option>
             </select>
 
-            <button type="submit" id="submit" className="submit">
-              <i className="fa-solid fa-user-plus"> </i>
+            <button type="submit" className="submit">
+             Thêm
             </button>
           </form>
         </div>
@@ -85,10 +198,10 @@ export default function Member() {
           <div>
             <h4>Xe sở hữu</h4>
             <div className="list_verhices">
-              {verhices.map((verh) => (
-                <div className="verhice" key={verh.id}>
-                  {verh.bx}
-                  <Link to="/verhices">
+              {data.map((verh) => (
+                <div className="verhice" key={verh.Vehicle_name}>
+                  {verh.Vehicle_name}
+                  <Link to="/car">
                     <i className="fa-solid fa-pen-to-square"></i>
                   </Link>
                 </div>
@@ -99,8 +212,9 @@ export default function Member() {
             <h4>Thông tin thành viên</h4>
             <form action="">
               <div className="gr1">
-                <input type="text" placeholder="Tên thành viên" id="name" />
-                <input type="password" placeholder="Password" id="password" />
+                <label htmlFor=""></label>
+                <input type="text" placeholder="Tên thành viên" id="name" name="name" />
+                <input type="password" placeholder="Password" id="password" name="password" />
               </div>
 
               <div className="gr2">
@@ -125,6 +239,7 @@ export default function Member() {
           </div>
         </div>
       </div>
+      <ToastContainer/>
     </div>
   );
 }

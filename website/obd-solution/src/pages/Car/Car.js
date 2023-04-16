@@ -16,7 +16,6 @@ export default function Car() {
     Phone: "",
     
   };
-  console.log(defaultVehicle);
   const [vehicleOSelected, setVehicleOSelected] = useState(defaultVehicle);
 
 
@@ -30,6 +29,7 @@ export default function Car() {
       <Vehicle
         infoBtnDisplay={false}
         btnDisplay={true}
+        dateDisplay={false}
         passName={null}
         passVehicle={setVehicleOSelected}
       />

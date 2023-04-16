@@ -1,10 +1,11 @@
-import React from "react";
+import React, {useState} from "react";
 import { Link } from "react-router-dom";
 import logo from "../../src/asset/images/head-logo.jpg";
 import "../../src/asset/styles/navbar.css";
 
 
-export default function Navbar({ username }) {
+export default function Navbar() {
+  
   return (
     <div>
       <div className="logo">
@@ -29,7 +30,7 @@ export default function Navbar({ username }) {
         <div className="account">
           <Link>
             <i class="fa-regular fa-circle-user"></i>
-            <p className="username">{username}</p>
+            <p className="username">{}</p>
           </Link>
           <Link to="/login">Logout</Link>
         </div>

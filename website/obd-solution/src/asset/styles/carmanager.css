@@ -6,7 +6,7 @@
     border-radius: 5px;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
     box-sizing: border-box;
-    padding: 1rem ;
+    padding: 1rem;
 
 }
 
@@ -43,7 +43,7 @@ h1 {
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 }
 
-.info_cars .info_form .form_col{
+.info_cars .info_form .form_col {
     width: 40%;
 
     display: flex;
@@ -52,18 +52,19 @@ h1 {
     justify-content: space-between;
 }
 
-.form_group{
+.form_group {
     width: 100%;
     height: 100%;
     padding-bottom: 1.5rem;
     margin-top: 0.5rem;
 
 }
-.form_group input{
+
+.form_group input {
     width: 100%;
 }
 
-.middle img{
+.middle img {
     height: 14rem;
     width: 14rem;
 }
@@ -82,7 +83,7 @@ input {
     height: 2.4rem;
     /* border: 1px solid #6298e5; */
     border-radius: 5px;
-    width: 16rem;
+    width: 10rem;
     margin-right: 10px;
     box-sizing: border-box;
     padding: 0rem 0.4rem;
@@ -91,16 +92,19 @@ input {
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
     color: #344a64;
 }
-.label{
+
+.label {
     color: #afbcc4;
 }
-.hint{
+
+.hint {
     /* background-color: #185adb; */
     color: #185adb;
-    border-radius: 5px 5px 0 0 ;
+    border-radius: 5px 5px 0 0;
     padding: 0.2rem;
 }
-.submition{
+
+.submition {
     padding-bottom: 1rem;
     display: flex;
     flex-direction: row;
@@ -108,12 +112,13 @@ input {
     width: 100%;
 }
 
-#addSpecification_btn1, #addSpecification_btn2{
+#addSpecification_btn1,
+#addSpecification_btn2 {
     width: 10rem;
     margin: 0;
 }
 
-.addSpecification_btns{
+.addSpecification_btns {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -122,9 +127,21 @@ input {
 
 }
 
-#addSpecification_input{
+#addSpecification {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
+    
+    width: 100%;
+}
+
+.addSpecification_input input {
+    width: 30rem;
+}
+
+#addSpecification_btn2{
+    float: right;
+    margin: 1rem;
+    background-color: #6a5af9;
 }

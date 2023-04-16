@@ -5,8 +5,6 @@ import { useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 
 export default function LoginComponent() {
-
-
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -21,47 +19,44 @@ export default function LoginComponent() {
     // const formJson = Object.fromEntries(formData.entries());
     console.log(name, password);
 
-
     fetch("http://192.168.1.7:3000/api/user/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        
+
         // 'Content-Type': 'application/x-www-form-urlencoded',
-        
       },
       body: JSON.stringify({
         name: name,
         password: password,
       }),
-      mode:'cors',
-      credentials:'same-origin'
+      mode: "cors",
+      credentials: "same-origin",
     })
       .then((response) => {
-        if (!response.ok) {
-          throw new Error(
-            `This is an HTTP error: The status is ${response.status}`
-          );
-        }
-        document.cookie = `user=${name}`;
-        console.log(response);
-        return response;
+        
+        
+        return response.json();
       })
       .then((res) => {
-        console.log(res.status);
-        if (res.status === 200) {
+        document.cookie = `access_token=${res.access_token}`;
+        console.log(res.cookie);
+        if (res.code === 200) {
           console.log("go");
-          return navigate('/');
-        } else if (res.status === 401) {
+          return navigate("/");
+        } else if (res.code === 401) {
           setName("");
           setPassword("");
           setError(res.message);
           setIsError(true);
+          console.log(res.status, res.message);
         } else {
+          setIsError(true);
           setError("Some error occured");
         }
       });
   };
+
 
   return (
     <div className="login">
@@ -75,7 +70,7 @@ export default function LoginComponent() {
               name="username"
               id="username"
               placeholder="Username"
-              onChange={(e)=>setName(e.target.value)}
+              onChange={(e) => setName(e.target.value)}
             />
           </div>
           <div className="form-froup">
@@ -84,14 +79,14 @@ export default function LoginComponent() {
               name="password"
               id="password"
               placeholder="Password"
-              onChange={(e)=>setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-
           {isError && (
             <div className="errors">
               <span>
                 <i class="fa-regular fa-circle-xmark"></i>
+                <span>&nbsp;</span>
                 {error}
               </span>
             </div>

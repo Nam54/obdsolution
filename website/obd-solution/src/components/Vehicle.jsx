@@ -26,9 +26,9 @@ export default function Vehicle({
   // List of vehicles
   const [data, setData] = useState([
     {
-      Name: "Chọn xe quản lý",
-      SetUpTime: "",
-      Phone: "",
+      Vehicle_name: "",
+      Phone_number: "",
+      Last_fix: "",
     },
   ]);
 
@@ -39,7 +39,11 @@ export default function Vehicle({
   const [isShowAdd, setIsShowAdd] = useState(false);
 
   // Check vehicle is selected in dropdown list
-  const [selected, setSelected] = useState(data[0]);
+  const [selected, setSelected] = useState({
+    Vehicle_name: "",
+    Phone_number: "",
+    Last_fix: "",
+  });
 
   // Filter data by date
   const [value, setValue] = useState({
@@ -62,10 +66,9 @@ export default function Vehicle({
       if (t[0].trim() === "access_token") accessToken = t[1];
     });
 
-    console.log(accessToken);
     const dataFetch = async () => {
       const data = await (
-        await fetch(`http:/194.233.103.107:8080/api/vehicle/`, {
+        await fetch(`http://194.233.103.107:8080/api/vehicle`, {
           headers: {
             authorization: accessToken,
           },
@@ -74,19 +77,32 @@ export default function Vehicle({
 
       setData(data.vehicles);
     };
-
     console.log(data);
     dataFetch();
   }, []);
 
   // Set content for button hide and show infomation of vehicle
   const setExpandedFunc = (isExp) => {
-    if (isExp) {
-      setTextExpandShow("Ẩn thông tin xe");
+    if (selected.Vehicle_name !== "") {
+      var state = isExp;
+      setExpanded(!state);
+      if (state) {
+        setTextExpandShow("Xem thông tin xe");
+      } else {
+        setTextExpandShow("Ẩn thông tin xe");
+      }
     } else {
-      setTextExpandShow("Xem thông tin xe");
+      toast.error("Bạn chưa chọn xe để xem thông tin", {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     }
-    setExpanded(!isExp);
   };
 
   // To send value date
@@ -106,31 +122,31 @@ export default function Vehicle({
   const handleSubmit = (event) => {
     // Prevent form submission on first load
     event.preventDefault();
-    var accessToken = ''
-    const c = document.cookie.split(';');
-    c.forEach(e => {
-      let t = e.split('=');
-      if(t[0].trim() === 'access_token') accessToken= t[1];  
-    })
+    var accessToken = "";
+    const c = document.cookie.split(";");
+    c.forEach((e) => {
+      let t = e.split("=");
+      if (t[0].trim() === "access_token") accessToken = t[1];
+    });
     // Post data got to the server
     fetch("http://194.233.103.107:8080/api/vehicle", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        authorization:accessToken
+        authorization: accessToken,
         // 'Content-Type': 'application/x-www-form-urlencoded',
       },
       body: JSON.stringify({
         Vehicle_name: name,
         Don_vi_QL: "Elogis",
-        Type: "CONTAINER",
+        Type: "Chưa xác định",
         VIN_number: "QWWE123456789",
-        Engine: "MAN",
-        Last_fix: "01/04/2023",
-        Phone_number:phone,
-        Driver: "Doan Ngoc Nam",
-        Year_of_manufacture: "2020",
-        Engine_number: "BCD123",
+        Engine: "Chưa xác định",
+        Last_fix: "",
+        Phone_number: phone,
+        Driver: "Chưa xác định",
+        Year_of_manufacture: "",
+        Engine_number: "Chưa xác định",
         Mining_time: "10",
         History_fix: "01/04/2023",
         Registration_deadline: "01/04/2024",
@@ -140,7 +156,7 @@ export default function Vehicle({
     })
       .then((response) => {
         if (!response.ok) {
-          toast.error('An error was occured', {
+          toast.error("An error was occured", {
             position: "bottom-right",
             autoClose: 5000,
             hideProgressBar: false,
@@ -149,7 +165,7 @@ export default function Vehicle({
             draggable: true,
             progress: undefined,
             theme: "light",
-            })
+          });
         }
         console.log(response);
         return response.json();
@@ -196,8 +212,8 @@ export default function Vehicle({
         <div
           className="cdropdown"
           onClick={(e) => {
-            var xactive = !isActive;
-            setActive(xactive);
+            var xactive = isActive;
+            setActive(!xactive);
           }}
         >
           <div className="dropdown-select">
@@ -250,6 +266,25 @@ export default function Vehicle({
                 showShortcuts={false}
               />
             </div>
+            {/* <TimePicker onChange={onChange} value={value} /> */}
+
+            <div
+              class="relative"
+              id="timepicker-inline-12"
+              data-te-input-wrapper-init
+            >
+              <input
+                type="text"
+                class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+                id="form2"
+              />
+              <label
+                for="form2"
+                class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
+              >
+                Select a time
+              </label>
+            </div>
             <button
               className="submit"
               onClick={() => {
@@ -274,13 +309,43 @@ export default function Vehicle({
         {/* The actions (crud) should be just in vehicles (Cars) manager page */}
         {btnDisplay && (
           <div className="btnManager">
-            <button id="default" className="submit">
-              Thiếp lập mặc định
+            <button
+              id="default"
+              className="submit"
+              onClick={() => {
+                toast.info("Chức năng này hiện chưa khả dụng!", {
+                  position: "top-center",
+                  autoClose: 5000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                  theme: "dark",
+                });
+              }}
+            >
+              Thiết lập mặc định
             </button>
             <button id="add" className="submit" onClick={showAdd}>
               {btnAdd}
             </button>
-            <button id="remove" className="submit">
+            <button
+              id="remove"
+              className="submit"
+              onClick={() => {
+                toast.info("Chức năng này hiện chưa khả dụng!", {
+                  position: "top-center",
+                  autoClose: 5000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                  theme: "dark",
+                });
+              }}
+            >
               Xóa Xe
             </button>
           </div>

@@ -14,9 +14,9 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<App/>} />
+        <Route path="/data" element={<App/>} />
         <Route path="/users" element={<Users />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Login/>} />
         <Route path="/cars" element={
           <ThemeProvider>
             <Cars/>

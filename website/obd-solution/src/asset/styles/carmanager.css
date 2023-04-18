@@ -145,3 +145,8 @@ input {
     margin: 1rem;
     background-color: #6a5af9;
 }
+
+.info_form >div{
+    display: flex;
+    flex-direction: row;
+}

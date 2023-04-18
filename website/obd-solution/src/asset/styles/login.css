@@ -21,7 +21,10 @@
     left: 35%;
     color: #015c92;
     backdrop-filter: blur(2px);
+    display: flex;
+    flex-direction: column;
 }
+
 
 .form_login h2 {
     color: #08273a;
@@ -78,5 +81,8 @@
     padding: 0.4rem;
     background-color: rgba(224,68,83,0.8);
     color: white;
+}
+form > div{
+    width: 100%;
 }
 

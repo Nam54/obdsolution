@@ -20,10 +20,7 @@ const mapHeader = (column) => {
 };
 
 // Replace '.' to '_' when download file
-const removeDot=(bx)=>{
-      var nbx= bx.replace('.','_')
-      return bx;
-}
+
 
 // Component
 export default function Table({ rowsPerPage, Vehicle, Date }) {
@@ -82,6 +79,14 @@ export default function Table({ rowsPerPage, Vehicle, Date }) {
     dataFetch();
   }, [Vehicle.Vehicle_name]);
 
+  const lamtron=(c)=>{
+    if(typeof c === 'number'){
+      let ltc= c.toFixed(3);
+      return ltc;
+    }else{
+      return c;
+    }
+  }
 
 
   // Renderings
@@ -109,7 +114,7 @@ export default function Table({ rowsPerPage, Vehicle, Date }) {
                   <td>
                     {" "}
                     <div className="flex items-center gap-x-3">
-                      <span>{item[c]}</span>
+                      <span>{lamtron(item[c])}</span>
                     </div>
                   </td>
                 ))}

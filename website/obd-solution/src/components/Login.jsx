@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../../src/asset/styles/login.css";
 // import background from "../../src/asset/images/bus.svg";
 import { useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
+import UserProfile from "./UserProfile.js";
 
 export default function LoginComponent() {
   const [name, setName] = useState("");
@@ -10,6 +11,10 @@ export default function LoginComponent() {
   const [error, setError] = useState("");
   const [isError, setIsError] = useState(false);
   const navigate = useNavigate();
+
+
+
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -34,16 +39,16 @@ export default function LoginComponent() {
       credentials: "same-origin",
     })
       .then((response) => {
-        
-        
         return response.json();
       })
       .then((res) => {
-        document.cookie = `access_token=${res.access_token}`;
-        console.log(res.cookie);
+        document.cookie = `access_token=${res.access_token};username=${name}`;
+       
+        console.log(document.cookie);
         if (res.code === 200) {
+          UserProfile.setName(name);
           console.log("go");
-          return navigate("/");
+          return navigate("/data");
         } else if (res.code === 401) {
           setName("");
           setPassword("");
@@ -57,44 +62,44 @@ export default function LoginComponent() {
       });
   };
 
-
   return (
     <div className="login">
       <div className="form_login">
         <form action="post" onSubmit={handleSubmit}>
-          <h2>ĐĂNG NHẬP</h2>
-          {/* Error */}
-          <div className="form-froup">
-            <input
-              type="text"
-              name="username"
-              id="username"
-              placeholder="Username"
-              onChange={(e) => setName(e.target.value)}
-            />
-          </div>
-          <div className="form-froup">
-            <input
-              type="password"
-              name="password"
-              id="password"
-              placeholder="Password"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-          {isError && (
-            <div className="errors">
-              <span>
-                <i class="fa-regular fa-circle-xmark"></i>
-                <span>&nbsp;</span>
-                {error}
-              </span>
+          <div>
+            <h2>ĐĂNG NHẬP</h2>
+            {/* Error */}
+            <div className="form-froup">
+              <input
+                type="text"
+                name="username"
+                id="username"
+                placeholder="Username"
+                onChange={(e) => setName(e.target.value)}
+              />
             </div>
-          )}
-
-          <button type="submit" className="submitbtn">
-            Đăng nhập
-          </button>
+            <div className="form-froup">
+              <input
+                type="password"
+                name="password"
+                id="password"
+                placeholder="Password"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+            {isError && (
+              <div className="errors">
+                <span>
+                  <i class="fa-regular fa-circle-xmark"></i>
+                  <span>&nbsp;</span>
+                  {error}
+                </span>
+              </div>
+            )}
+            <button type="submit" className="submitbtn">
+              Đăng nhập
+            </button>
+          </div>
         </form>
       </div>
     </div>

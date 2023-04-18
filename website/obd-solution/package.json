@@ -16,14 +16,17 @@
     "react": "^18.2.0",
     "react-csv": "^2.2.2",
     "react-dom": "^18.2.0",
+    "react-ios-time-picker": "^0.2.2",
     "react-papaparse": "^4.1.0",
     "react-router-dom": "^6.10.0",
     "react-scripts": "5.0.1",
     "react-table": "^7.8.0",
     "react-tailwindcss-datepicker": "^1.5.1",
+    "react-timeit": "^1.2.12",
     "react-toastify": "^9.1.2",
     "reactjs-popup": "^2.0.5",
     "rimraf": "^4.4.0",
+    "tw-elements": "^1.0.0-beta2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

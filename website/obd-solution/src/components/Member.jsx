@@ -3,8 +3,8 @@ import "../../src/asset/styles/member.css";
 import Search from "./SearchBar";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const users = [
   { id: "1", fullname: "Kha" },
@@ -25,8 +25,6 @@ const filterUser = (users, query) => {
   });
 };
 
-
-
 export default function Member() {
   // Name of user added
   const [name, setName] = useState("");
@@ -42,9 +40,8 @@ export default function Member() {
   const [searchQuery, setSearchQuery] = useState(query || "");
   const filteredUsers = filterUser(users, searchQuery);
 
-
-   // List of vehicles
-   const [data, setData] = useState([
+  // List of vehicles
+  const [data, setData] = useState([
     {
       Name: "",
       SetUpTime: "",
@@ -53,62 +50,58 @@ export default function Member() {
   ]);
 
   useEffect(() => {
-
-    var accessToken = ''
-    const c = document.cookie.split(';');
-    c.forEach(e => {
-      let t = e.split('=');
-      if(t[0].trim() === 'access_token') accessToken= t[1];  
-    })
+    var accessToken = "";
+    const c = document.cookie.split(";");
+    c.forEach((e) => {
+      let t = e.split("=");
+      if (t[0].trim() === "access_token") accessToken = t[1];
+    });
 
     const dataFetch = async () => {
       const data = await (
-        await fetch(`http://194.233.103.107:8080/api/vehicle`,{
+        await fetch(`http://194.233.103.107:8080/api/vehicle`, {
           headers: {
-            authorization:accessToken
-          }
+            authorization: accessToken,
+          },
         })
       ).json();
-      
+
       setData(data.vehicles);
     };
     console.log(data);
     dataFetch();
   }, []);
 
-
   // When the form was submitted
   const handleSubmit = (event) => {
-
     // Prevent form submission on first load
     event.preventDefault();
-  
-    var accessToken = ''
-    const c = document.cookie.split(';');
-    c.forEach(e => {
-      let t = e.split('=');
-      if(t[0].trim() === 'access_token') accessToken= t[1];  
-    })
+
+    var accessToken = "";
+    const c = document.cookie.split(";");
+    c.forEach((e) => {
+      let t = e.split("=");
+      if (t[0].trim() === "access_token") accessToken = t[1];
+    });
     // Post data got to the server
-    fetch("http:/194.233.103.107:8080/api/user/register", {
+    fetch("http://194.233.103.107:8080/api/user/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        authorization:accessToken
+        authorization: accessToken,
         // 'Content-Type': 'application/x-www-form-urlencoded',
-        
       },
       body: JSON.stringify({
         name: name,
         password: password,
-        "address": ""
+        address: "1017",
       }),
-      mode:'cors',
-      credentials:'same-origin'
+      mode: "cors",
+      credentials: "same-origin",
     })
       .then((response) => {
         if (!response.ok) {
-          toast.error('An error was occured', {
+          toast.error("An error was occured", {
             position: "bottom-right",
             autoClose: 5000,
             hideProgressBar: false,
@@ -117,16 +110,16 @@ export default function Member() {
             draggable: true,
             progress: undefined,
             theme: "light",
-            })
-
+          });
+          
         }
-        
+        console.log(response);
         return response.json();
       })
       .then((res) => {
         console.log(res.code);
         if (res.code === 200) {
-          toast.success('Member war created succesfully!', {
+          toast.success("Member war created succesfully!", {
             position: "bottom-right",
             autoClose: 5000,
             hideProgressBar: false,
@@ -135,29 +128,45 @@ export default function Member() {
             draggable: true,
             progress: undefined,
             theme: "light",
-            })
-        } else if (res.code === 409) {
+          });
+         window.location.reload();
+        } else if (res.status === 401) {
           setName("");
           setPassword("");
           setError(res.message);
           setIsError(true);
-          
         } else {
           setError("Some error occured");
         }
       });
   };
-  
+
   return (
     <div className="custom_container">
       <div className="add_member">
         <div className="custom_form">
           <h2>Thêm thành viên</h2>
-          <form action="post" onSubmit={handleSubmit} >
-            <label htmlFor="name" className="visually-hidden">Name </label>
-            <input type="text" placeholder="Thêm thành viên" id="name" name="name" onChange={(e)=>setName(e.target.value)}/>
-            <label htmlFor="password" className="visually-hidden">Password</label>
-            <input type="password" placeholder="Password" id="password" name="password" onChange={(e)=>setPassword(e.target.value)} />
+          <form action="post" onSubmit={handleSubmit}>
+            <label htmlFor="name" className="visually-hidden">
+              Name{" "}
+            </label>
+            <input
+              type="text"
+              placeholder="Thêm thành viên"
+              id="name"
+              name="name"
+              onChange={(e) => setName(e.target.value)}
+            />
+            <label htmlFor="password" className="visually-hidden">
+              Password
+            </label>
+            <input
+              type="password"
+              placeholder="Password"
+              id="password"
+              name="password"
+              onChange={(e) => setPassword(e.target.value)}
+            />
             <select
               name="role"
               id="role"
@@ -171,7 +180,7 @@ export default function Member() {
             </select>
 
             <button type="submit" className="submit">
-             Thêm
+              Thêm
             </button>
           </form>
         </div>
@@ -201,7 +210,7 @@ export default function Member() {
               {data.map((verh) => (
                 <div className="verhice" key={verh.Vehicle_name}>
                   {verh.Vehicle_name}
-                  <Link to="/car">
+                  <Link to="/cars">
                     <i className="fa-solid fa-pen-to-square"></i>
                   </Link>
                 </div>
@@ -210,36 +219,48 @@ export default function Member() {
           </div>
           <div className="edit_info">
             <h4>Thông tin thành viên</h4>
-            <form action="">
-              <div className="gr1">
-                <label htmlFor=""></label>
-                <input type="text" placeholder="Tên thành viên" id="name" name="name" />
-                <input type="password" placeholder="Password" id="password" name="password" />
-              </div>
-
-              <div className="gr2">
-                <select
-                  name="role"
-                  id="role"
-                  defaultValue="Vai trò"
-                  className="select"
-                >
-                  <option value="Admin">Admin</option>
-                  <option value="Protecter">Protecter</option>
-                  <option value="Member">Member</option>
-                  <option value="Viewer">Viewer</option>
-                </select>
-                <input type="text" placeholder="Địa chỉ" id="password" />
+            <form action="" className="edit_info_form">
+              <div>
+                {" "}
+                <div className="gr1">
+                  <label htmlFor=""></label>
+                  <input
+                    type="text"
+                    placeholder="Tên thành viên"
+                    id="name"
+                    name="name"
+                  />
+                  <input
+                    type="password"
+                    placeholder="Password"
+                    id="password"
+                    name="password"
+                  />
+                </div>
+                <div className="gr2">
+                  <select
+                    name="role"
+                    id="role"
+                    defaultValue="Vai trò"
+                    className="select"
+                  >
+                    <option value="Admin">Admin</option>
+                    <option value="Protecter">Protecter</option>
+                    <option value="Member">Member</option>
+                    <option value="Viewer">Viewer</option>
+                  </select>
+                  <input type="text" placeholder="Địa chỉ" id="password" />
+                </div>
               </div>
 
               <button type="submit" id="submit" className="submit">
-              <i class="fa-solid fa-floppy-disk"></i>
+                <i class="fa-solid fa-floppy-disk"></i>
               </button>
             </form>
           </div>
         </div>
       </div>
-      <ToastContainer/>
+      <ToastContainer />
     </div>
   );
 }

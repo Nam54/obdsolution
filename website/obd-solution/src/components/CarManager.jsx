@@ -44,7 +44,7 @@ export default function CarManager({ Vehicle }) {
         // 'Content-Type': 'application/x-www-form-urlencoded',
       },
       body: JSON.stringify({
-        vehicle_name: Vehicle.Vehicle_name,
+        Vehicle_name: Vehicle.Vehicle_name,
         ColunmName: id,
         Value: name,
       }),
@@ -70,7 +70,7 @@ export default function CarManager({ Vehicle }) {
       .then((res) => {
         console.log(res.code);
         if (res.code === 200) {
-          toast.success("Member war created succesfully!", {
+          toast.success("Specification war created succesfully!", {
             position: "bottom-right",
             autoClose: 5000,
             hideProgressBar: false,
@@ -80,6 +80,7 @@ export default function CarManager({ Vehicle }) {
             progress: undefined,
             theme: "light",
           });
+        
         } else if (res.status === 401) {
           setId("");
           setName("");
@@ -112,77 +113,74 @@ export default function CarManager({ Vehicle }) {
           <p>Sửa thông tin để cập nhật:</p>
         </div>
         <form action="" className="info_form">
-          <div className="form_col">
-            {/* Group for name of vehicle */}
-            <div className="form_group">
-              <label htmlFor="name" className="label">
-                Biển số
-              </label>
-              <input
-                disabled
-                name="name"
-                type="text"
-                id="name"
-                placeholder="Biển số"
-                defaultValue={Vehicle.Vehicle_name}
-              />
+          <div>
+            <div className="form_col">
+              {/* Group for name of vehicle */}
+              <div className="form_group">
+                <label htmlFor="name" className="label">
+                  Biển số
+                </label>
+                <input
+                  disabled
+                  name="name"
+                  type="text"
+                  id="name"
+                  placeholder="Biển số"
+                  defaultValue={Vehicle.Vehicle_name}
+                />
+              </div>
+              {/* Group for phone */}
+              <div className="form_group">
+                <label htmlFor="phone" className="label">
+                  Số điện thoại
+                </label>
+                <input
+                  disabled
+                  name="phone"
+                  type="text"
+                  id="phone"
+                  placeholder="Số điện thoại"
+                  defaultValue={Vehicle.Phone_number}
+                />
+              </div>
             </div>
-            {/* Group for phone */}
-            <div className="form_group">
-              <label htmlFor="phone" className="label">
-                Số điện thoại
-              </label>
-              <input
-                disabled
-                name="phone"
-                type="text"
-                id="phone"
-                placeholder="Số điện thoại"
-                defaultValue={Vehicle.Phone_number}
-              />
+
+            {/* Middle image, just for UI */}
+            <div className="middle">
+              <img src={img} alt="m" />
+            </div>
+
+            <div className="form_col">
+              {/* Group for time set up vehicle */}
+              <div className="form_group">
+                <label htmlFor="time" className="label">
+                  Lần sửa chữa cuối cùng
+                </label>
+                <input
+                  disabled
+                  type="text"
+                  id="idc"
+                  placeholder="Lần sửa cuối"
+                  defaultValue={Vehicle.Last_fix}
+                />
+              </div>
+              <div className="form_group">
+                <label htmlFor="lposc" className="label">
+                  Động cơ
+                </label>
+                <input
+                  disabled
+                  type="text"
+                  id="idc"
+                  placeholder="Động cơ"
+                  defaultValue={Vehicle.Engine}
+                />
+              </div>
             </div>
           </div>
 
-          {/* Middle image, just for UI */}
-          <div className="middle">
-            <img src={img} alt="m" />
-          </div>
-
-          <div className="form_col">
-            {/* Group for time set up vehicle */}
-            <div className="form_group">
-              <label htmlFor="time" className="label">
-                Lần sửa chữa cuối cùng
-              </label>
-              <input
-                disabled
-                type="text"
-                id="idc"
-                placeholder="Lần sửa cuối"
-                defaultValue={Vehicle.Last_fix}
-              />
-            </div>
-            <div className="form_group">
-              <label htmlFor="lposc" className="label">
-                Động cơ
-              </label>
-              <input
-                disabled
-                type="text"
-                id="idc"
-                placeholder="Động cơ"
-                defaultValue={Vehicle.Engine}
-              />
-            </div>
-          </div>
           <div className="submition">
-            <button
-              
-              className="submit"
-
-            >
-              Lưu
-            </button>
+            <button className="submit">Lưu</button>
           </div>
         </form>
 
@@ -200,7 +198,7 @@ export default function CarManager({ Vehicle }) {
                   Mã trường
                 </label>
                 <input
-                  type="number"
+                  type="text"
                   id="idS"
                   name="idS"
                   placeholder="Mã trường (chỉ nhập số)"

@@ -37,7 +37,7 @@
 
 
 .cdropdown{
-    width: 16rem;
+    width: 12rem;
     /* position: static; */
     height: 100%;
     margin-right: 1rem;
@@ -87,7 +87,7 @@
 }
 
 .datepicker{
-    width: 20rem !important;
+    width: 15rem !important;
     /* border: 1px solid #344a64; */
     border-radius: 5px;
     /* box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2); */

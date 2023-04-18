@@ -1,31 +1,31 @@
 import React from "react";
 import "../../src/asset/styles/searchbar.css";
 
-const SearchComponent = ({searchQuery,setSearchQuery})=>{
-    return (
+const SearchComponent = ({ searchQuery, setSearchQuery }) => {
+  return (
+    <div>
+      <h2>Tìm kiếm thành viên</h2>
+      <form action="/" method="get">
         <div>
-            <h2>
-                Tìm kiếm thành viên
-            </h2>
-                    <form action="/" method="get">
-        <label htmlFor="header-search">
+          <label htmlFor="header-search">
             <span className="visually-hidden">Search members</span>
-        </label>
-        <input
+          </label>
+          <input
             value={searchQuery}
-            onInput={e=>setSearchQuery(e.target.value)}
+            onInput={(e) => setSearchQuery(e.target.value)}
             type="text"
             id="header-search"
             placeholder="Tìm theo tên thành viên"
-            name="s" 
-        />
-        <button type="submit" className="submit">Search</button>
-    </form>
+            name="s"
+          />
         </div>
 
-    )
-
-}
-
+        <button type="submit" className="submit">
+          Search
+        </button>
+      </form>
+    </div>
+  );
+};
 
 export default SearchComponent;
